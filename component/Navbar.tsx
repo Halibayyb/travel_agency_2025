@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef } from "react";
 
 // Navigation items constant
 const NAV_ITEMS = [
@@ -9,6 +9,8 @@ const NAV_ITEMS = [
     { id: 'service', label: 'SERVICE', href: '#service', sectionId: 'service' },
     { id: 'contact', label: 'CONTACT', href: '#contact', sectionId: 'contact' }
 ] as const;
+
+type NavItem = typeof NAV_ITEMS[number];
 
 // Custom hook for scroll position
 const useScrollPosition = () => {
@@ -30,7 +32,7 @@ const Navbar = () => {
     const scrollY = useScrollPosition();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [activeSection, setActiveSection] = useState('home');
-    const navbarRef = useRef(null);
+    const navbarRef = useRef<HTMLDivElement>(null);
     
     // Check if user has scrolled past the initial viewport
     const isScrolled = scrollY > 700;
@@ -88,11 +90,11 @@ const Navbar = () => {
 
     // Close mobile menu when clicking outside
     useEffect(() => {
-        const handleClickOutside = (event) => {
+        const handleClickOutside = (event: MouseEvent | TouchEvent) => {
             if (
                 isMenuOpen &&
                 navbarRef.current &&
-                !navbarRef.current.contains(event.target)
+                !navbarRef.current.contains(event.target as Node)
             ) {
                 setIsMenuOpen(false);
             }
@@ -111,7 +113,7 @@ const Navbar = () => {
 
     // Close menu when pressing Escape key
     useEffect(() => {
-        const handleEscapeKey = (event) => {
+        const handleEscapeKey = (event: KeyboardEvent) => {
             if (event.key === 'Escape' && isMenuOpen) {
                 setIsMenuOpen(false);
             }
@@ -127,7 +129,7 @@ const Navbar = () => {
     }, [isMenuOpen]);
 
     // Handle navigation
-    const handleNavigation = (navItem) => {
+    const handleNavigation = (navItem: NavItem) => {
         setActiveSection(navItem.id);
         setIsMenuOpen(false); // Always close menu when navigating
 

@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useState, useRef } from "react";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+import type { Swiper as SwiperType } from 'swiper';
 
 // Import Swiper styles
 import 'swiper/css';
@@ -12,7 +13,6 @@ import 'swiper/css/pagination';
 
 // import image
 import royal_img from "@/public/assets/royal_palace_img.jpg"
-
 
 // Gallery data
 const galleryItems = [
@@ -40,8 +40,7 @@ const galleryItems = [
         subtitle: "Cultural Experience",
         location: "Luang Prabang",
         description: "Experience authentic Lao village life and traditional crafts in the countryside surrounding Luang Prabang.",
-                image: royal_img,
-
+        image: royal_img,
         placeholder: "bg-green-200"
     },
     {
@@ -50,8 +49,7 @@ const galleryItems = [
         subtitle: "Sacred Temple",
         location: "Luang Prabang",
         description: "The most important monastery in Luang Prabang, showcasing classic Lao architecture and Buddhist art.",
-                image: royal_img,
-
+        image: royal_img,
         placeholder: "bg-orange-200"
     },
     {
@@ -60,8 +58,7 @@ const galleryItems = [
         subtitle: "Local Shopping",
         location: "Luang Prabang",
         description: "Browse handmade textiles, crafts, and local delicacies at the vibrant night market on Sisavangvong Road.",
-                image: royal_img,
-
+        image: royal_img,
         placeholder: "bg-purple-200"
     }
 ];
@@ -75,11 +72,11 @@ const CitiesGallery = () => {
     }
 
     const [activeIndex, setActiveIndex] = useState(1);
-    const swiperRef = useRef(null);
+    const [swiperInstance, setSwiperInstance] = useState<SwiperType | null>(null);
 
-    const handleCardClick = (slideIndex) => {
-        if (!swiperRef.current) return;
-        swiperRef.current.swiper.slideToLoop(slideIndex);
+    const handleCardClick = (slideIndex: number) => {
+        if (!swiperInstance) return;
+        swiperInstance.slideToLoop(slideIndex);
     };
 
     return (
@@ -100,7 +97,7 @@ const CitiesGallery = () => {
             {/* Scaled Gallery Swiper */}
             <div className="relative">
                 <Swiper
-                    ref={swiperRef}
+                    onSwiper={setSwiperInstance}
                     modules={[Navigation, Pagination, Autoplay]}
                     loop={true}
                     centeredSlides={true}
