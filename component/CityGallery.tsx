@@ -107,14 +107,14 @@ const CitiesGallery = () => {
                     navigation={true}
                     pagination={{ clickable: true }}
                     autoplay={{
-                        delay: 4000,
+                        delay: 2500,
                         disableOnInteraction: false,
                     }}
                     onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
                     breakpoints={{
-                        320: { slidesPerView: 1.5 },
-                        640: { slidesPerView: 2 },
-                        768: { slidesPerView: 2 },
+                        320: { slidesPerView: 1 },
+                        640: { slidesPerView: 1 },
+                        768: { slidesPerView: 1},
                         1024: { slidesPerView: 2 },
                         1280: { slidesPerView: 2.1 },
                     }}
@@ -134,7 +134,7 @@ const CitiesGallery = () => {
                                     onClick={() => handleCardClick(index)}
                                 >
                                     {/* Image Container */}
-                                    <div className="relative h-64 md:h-80 lg:h-96  overflow-hidden">
+                                    <div className="relative h-80 lg:h-96  overflow-hidden">
                                         {/* Placeholder background - replace with actual image */}
                                         <div className={`absolute inset-0 ${item.placeholder}`}></div>
                                         {/* Uncomment when you have images */}

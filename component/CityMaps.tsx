@@ -1,203 +1,439 @@
-'use client';
+"use client";
 
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 // You'll import these images yourself
 // import palaceImage from "@/public/assets/palace.jpg";
 // import templeImage from "@/public/assets/temple.jpg";
 // import waterfallImage from "@/public/assets/waterfall.jpg";
 // import marketImage from "@/public/assets/market.jpg";
-import palaceImg from "@/public/assets/royal_palace_img.jpg"
-import mapBackground from "@/public/assets/city_map.png"  // Add your map image here
+import palaceImg from "@/public/assets/royal_palace_img.jpg";
+import mapBackground from "@/public/assets/city_map.png"; // Add your map image here
 
 const mapLocations = [
-    {
-        id: 1,
-        title: "Luang Prabang\nRoyal Palace",
-        description: "An enjoyable stroll from Sofitel Luang\nPrabang brings you to a fascinating",
-        image: palaceImg,
-        placeholder: "bg-amber-200",
-        side: "left"
-    },
-    {
-        id: 2,
-        title: "Wat Xieng Thong",
-        description: "An enjoyable stroll from Sofitel Luang\nPrabang brings you to",
-        image: palaceImg,
-        placeholder: "bg-orange-200",
-        side: "right"
-    },
-    {
-        id: 3,
-        title: "Kuang Si Falls",
-        description: "An enjoyable stroll from Sofitel Luang\nPrabang brings you to",
-        image: palaceImg,
-        placeholder: "bg-blue-200",
-        side: "left"
-    },
-    {
-        id: 4,
-        title: "Night Market",
-        description: "An enjoyable stroll from Sofitel Luang\nPrabang brings you to",
-        image: palaceImg,
-        placeholder: "bg-purple-200",
-        side: "right"
-    }
+  {
+    id: 1,
+    title: "Luang Prabang\nRoyal Palace",
+    description:
+      "An enjoyable stroll from Sofitel Luang\nPrabang brings you to a fascinating",
+    image: palaceImg,
+    placeholder: "bg-amber-200",
+    side: "left",
+  },
+  {
+    id: 2,
+    title: "Wat Xieng Thong",
+    description:
+      "An enjoyable stroll from Sofitel Luang\nPrabang brings you to",
+    image: palaceImg,
+    placeholder: "bg-orange-200",
+    side: "right",
+  },
+  {
+    id: 3,
+    title: "Kuang Si Falls",
+    description:
+      "An enjoyable stroll from Sofitel Luang\nPrabang brings you to",
+    image: palaceImg,
+    placeholder: "bg-blue-200",
+    side: "left",
+  },
+  {
+    id: 4,
+    title: "Night Market",
+    description:
+      "An enjoyable stroll from Sofitel Luang\nPrabang brings you to",
+    image: palaceImg,
+    placeholder: "bg-purple-200",
+    side: "right",
+  },
 ];
 
 const CityMaps = () => {
-    return (
-        <section className="min-h-screen py-16 relative overflow-hidden">
-            {/* Background Map */}
-            <div className="absolute inset-0">
-                <Image
-                    src={mapBackground}
-                    alt="Luang Prabang Map"
-                    fill
-                    priority
-                    className="object-cover"
-                />
-                {/* Semi-transparent overlay for better text readability */}
-                <div className="absolute inset-0 b bg-opacity-20"></div>
-            </div>
+  // Simple animation variants
+  const fadeInUp = {
+    initial: { opacity: 0, y: 30 },
+    animate: { opacity: 1, y: 0 },
+    transition: { duration: 0.8, ease: "easeOut" }
+  };
 
-            {/* Header */}
-            <div className="text-center mb-16 relative z-10">
-                <h1 className="text-2xl md:text-3xl font-bold text-gray-800 mb-2 tracking-wider">
-                    RELAXATION AND LUXURY
-                </h1>
-                <h2 className="text-xl md:text-2xl font-bold text-gray-800 tracking-wider">
-                    DURING YOUR STAY
-                </h2>
-            </div>
+  const slideInLeft = {
+    initial: { opacity: 0, x: -40 },
+    animate: { opacity: 1, x: 0 },
+    transition: { duration: 0.8, ease: "easeOut" }
+  };
 
-            {/* Vertical Timeline */}
-            <div className="relative max-w-2xl mx-auto px-6 z-10">
-                {/* Central vertical line */}
-                <div className="absolute left-1/2 top-0 bottom-0 w-px bg-amber-600 transform -translate-x-1/2"></div>
+  const slideInRight = {
+    initial: { opacity: 0, x: 40 },
+    animate: { opacity: 1, x: 0 },
+    transition: { duration: 0.8, ease: "easeOut" }
+  };
 
-                {/* Timeline items */}
-                <div className="space-y-3">
-                    {mapLocations.map((location, index) => (
-                        <div key={location.id} className="relative">
-                            {/* Central dot */}
-                            <div className="absolute left-1/2 w-3 h-3 bg-amber-600 rounded-full transform -translate-x-1/2 z-10"></div>
+  const staggerContainer = {
+    animate: {
+      transition: {
+        staggerChildren: 0.3
+      }
+    }
+  };
 
-                            {location.side === "left" ? (
-                                // Left side layout
-                                <div className="flex justify-center">
-                                    <div className="w-1/2 pr-8">
-                                        {/* Empty space on left */}
-                                    </div>
-                                    
-                                    <div className="w-1/2 pl-16">
-                                        {/* Polaroid on right side of center */}
-                                        <div className="inline-block cursor-pointer transform rotate-3 hover:rotate-0 transition-all duration-300 hover:scale-105">
-                                            <div className="bg-white p-3 shadow-lg hover:shadow-xl transition-shadow duration-300"
-                                                 style={{ width: '150px' }}>
-                                                
-                                                {/* Photo */}
-                                                <div className={`relative w-full h-28 ${location.placeholder} mb-3 overflow-hidden`}>
-                                                    <Image
-                                                        src={location.image}
-                                                        alt={location.title}
-                                                        fill
-                                                        className="object-cover"
-                                                    />
-                                                    
-                                                    {/* Tape effect */}
-                                                    <div className="absolute -top-1 left-3 w-6 h-3 bg-yellow-200/70 transform -rotate-12"></div>
-                                                    <div className="absolute -top-1 right-4 w-5 h-3 bg-yellow-200/70 transform rotate-12"></div>
-                                                </div>
-                                                
-                                                {/* Handwritten Title */}
-                                                <div className="text-center">
-                                                    <p className="text-xs font-handwriting text-gray-700 leading-tight whitespace-pre-line">
-                                                        {location.title}
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        
-                                        {/* Content below polaroid */}
-                                        <div className="mt-6 max-w-xs">
-                                            <h3 className="text-lg font-bold text-gray-800 mb-3 tracking-wide">
-                                                RELAXATION
-                                            </h3>
-                                            <p className="text-sm text-gray-600 leading-relaxed whitespace-pre-line">
-                                                {location.description}
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            ) : (
-                                // Right side layout
-                                <div className="flex justify-center">
-                                    <div className="w-1/2 pr-16">
-                                        {/* Polaroid on left side of center */}
-                                        <div className="inline-block cursor-pointer transform -rotate-2 hover:rotate-0 transition-all duration-300 hover:scale-105 float-right">
-                                            <div className="bg-white p-3 shadow-lg hover:shadow-xl transition-shadow duration-300"
-                                                 style={{ width: '200px' }}>
-                                                
-                                                {/* Photo */}
-                                                <div className={`relative w-full h-28 ${location.placeholder} mb-3 overflow-hidden`}>
-                                                    <Image
-                                                        src={location.image}
-                                                        alt={location.title}
-                                                        fill
-                                                        className="object-cover"
-                                                    />
-                                                    
-                                                    {/* Tape effect */}
-                                                    <div className="absolute -top-1 left-3 w-6 h-3 bg-yellow-200/70 transform -rotate-12"></div>
-                                                    <div className="absolute -top-1 right-4 w-5 h-3 bg-yellow-200/70 transform rotate-12"></div>
-                                                </div>
-                                                
-                                                {/* Handwritten Title */}
-                                                <div className="text-center">
-                                                    <p className="text-xs font-handwriting text-gray-700 leading-tight whitespace-pre-line">
-                                                        {location.title}
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        
-                                        {/* Content below polaroid */}
-                                        <div className="mt-6 max-w-xs float-right text-right">
-                                            <h3 className="text-lg font-bold text-gray-800 mb-3 tracking-wide">
-                                                RELAXATION
-                                            </h3>
-                                            <p className="text-sm text-gray-600 leading-relaxed whitespace-pre-line">
-                                                {location.description}
-                                            </p>
-                                        </div>
-                                    </div>
-                                    
-                                    <div className="w-1/2 pl-8">
-                                        {/* Empty space on right */}
-                                    </div>
-                                </div>
-                            )}
+  return (
+    <section className="min-h-screen py-8 md:py-16 relative overflow-hidden">
+      {/* Background Map */}
+      <div className="absolute inset-0">
+        <Image
+          src={mapBackground}
+          alt="Luang Prabang Map"
+          fill
+          priority
+          className="object-cover"
+        />
+        {/* Semi-transparent overlay for better text readability */}
+        <div className="absolute inset-0 bg-white"></div>
+      </div>
+
+      {/* Header */}
+      <motion.div 
+        className="text-center mb-8 md:mb-16 relative z-10 px-4"
+        initial="initial"
+        animate="animate"
+        variants={fadeInUp}
+      >
+        <h1 className="text-2xl lg:text-3xl font-bold text-gray-800 mb-2 tracking-wider">
+          RELAXATION AND LUXURY
+        </h1>
+        <h2 className="text-xl lg:text-2xl font-bold text-gray-800 tracking-wider">
+          DURING YOUR STAY
+        </h2>
+      </motion.div>
+
+      {/* Timeline Container */}
+      <div className="relative max-w-6xl mx-auto px-4 md:px-6 z-10">
+        {/* Mobile Timeline - Centered with vertical line */}
+        <motion.div 
+          className="block md:hidden relative"
+          initial="initial"
+          whileInView="animate"
+          viewport={{ once: true, amount: 0.2 }}
+          variants={staggerContainer}
+        >
+          {/* Mobile vertical line */}
+          <motion.div 
+            className="absolute left-1/2 top-0 bottom-0 w-px bg-[#8C614F] transform -translate-x-1/2"
+            initial={{ scaleY: 0 }}
+            whileInView={{ scaleY: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1.2, ease: "easeOut" }}
+          ></motion.div>
+
+          <div className="space-y-12">
+            {mapLocations.map((location, index) => (
+              <motion.div 
+                key={location.id} 
+                className="relative"
+                variants={fadeInUp}
+                custom={index}
+              >
+                {/* Mobile Central dot */}
+                <motion.div 
+                  className="absolute left-1/2 w-3 h-3 bg-[#8C614F] rounded-full transform -translate-x-1/2 z-10"
+                  initial={{ scale: 0 }}
+                  whileInView={{ scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: index * 0.2 }}
+                ></motion.div>
+
+                {/* Mobile Polaroid - Alternating sides with text on opposite side */}
+                <div className="flex">
+                  {location.side === "left" ? (
+                    <>
+                      {/* Left side: Text on left, Polaroid on right */}
+                      <motion.div 
+                        className="w-1/2 pr-4 flex justify-end items-start"
+                        variants={slideInLeft}
+                      >
+                        {/* Description text on left side */}
+                        <div className="w-32 text-right">
+                          <p className="text-sm text-gray-600 leading-relaxed whitespace-pre-line">
+                            {location.description}
+                          </p>
                         </div>
-                    ))}
-                </div>
-            </div>
+                      </motion.div>
+                      <motion.div 
+                        className="w-1/2 pl-4"
+                        variants={slideInRight}
+                      >
+                        {/* Polaroid on right side */}
+                        <motion.div 
+                          className="inline-block cursor-pointer transform -rotate-8 hover:rotate-0 transition-all duration-300 hover:scale-105"
+                          whileHover={{ rotate: 0, scale: 1.05 }}
+                          transition={{ duration: 0.3 }}
+                        >
+                          <div className="relative w-40 h-48 bg-orange-50 shadow-xl p-3 pb-8 rounded-sm">
+                            {/* Photo area */}
+                            <div className="relative w-full h-28 bg-gray-100 overflow-hidden border border-gray-200 shadow-inner">
+                              <Image
+                                src={location.image}
+                                alt={location.title}
+                                fill
+                                className="object-cover"
+                              />
+                            </div>
 
-            {/* Custom Styles */}
-            <style jsx global>{`
-                .font-handwriting {
-                    font-family: 'Kalam', 'Comic Sans MS', cursive;
-                    font-weight: 400;
-                }
-                
-                @media (max-width: 768px) {
-                    .space-y-24 > * + * {
-                        margin-top: 4rem;
-                    }
-                }
-            `}</style>
-        </section>
-    );
+                            {/* Tape pieces for left cards */}
+                            <div className="absolute -top-1 left-5 w-8 h-3 bg-amber-200 transform -rotate-6 z-10 rounded-sm shadow-md opacity-85"></div>
+                            <div className="absolute -top-1 right-4 w-6 h-4 bg-amber-200 transform rotate-12 z-10 rounded-sm shadow-md opacity-90"></div>
+                            <div className="absolute top-12 -left-1 w-4 h-6 bg-amber-200 transform rotate-6 z-10 rounded-sm shadow-md opacity-80"></div>
+
+                            {/* Handwritten title */}
+                            <div className="absolute bottom-3 left-2 right-2 text-center">
+                              <p className="text-sm font-medium text-gray-800 leading-tight transform rotate-1">
+                                {location.title}
+                              </p>
+                            </div>
+
+                            {/* Aging spots */}
+                            <div className="absolute top-6 right-4 w-2 h-2 rounded-full bg-yellow-100 opacity-60"></div>
+                            <div className="absolute top-8 left-5 w-1 h-1 rounded-full bg-amber-100 opacity-40"></div>
+                            <div className="absolute bottom-10 right-2 w-1 h-1 rounded-full bg-gray-300 opacity-50"></div>
+
+                            {/* Additional aging effects for left cards */}
+                            <div className="absolute bottom-0 left-0 w-4 h-4 bg-gray-100 transform rotate-45 -translate-y-1 -translate-x-1 opacity-80"></div>
+                            <div className="absolute top-6 right-3 w-6 h-3 rounded-full bg-yellow-100 opacity-20 transform rotate-45"></div>
+                            <div className="absolute bottom-16 left-6 w-1 h-3 bg-gray-200 opacity-40"></div>
+                            <div className="absolute bottom-8 right-3 w-12 h-px bg-gray-200 opacity-40 transform -rotate-12"></div>
+                          </div>
+                        </motion.div>
+                      </motion.div>
+                    </>
+                  ) : (
+                    <>
+                      {/* Right side: Polaroid on left, text on right */}
+                      <motion.div 
+                        className="w-1/2 pr-4"
+                        variants={slideInLeft}
+                      >
+                        {/* Polaroid on left side */}
+                        <motion.div 
+                          className="inline-block cursor-pointer transform rotate-5 hover:rotate-0 transition-all duration-300 hover:scale-105 float-right"
+                          whileHover={{ rotate: 0, scale: 1.05 }}
+                          transition={{ duration: 0.3 }}
+                        >
+                          <div className="relative w-40 h-48 bg-yellow-50 shadow-xl p-3 pb-8 rounded-sm">
+                            {/* Photo area */}
+                            <div className="relative w-full h-28 bg-gray-100 overflow-hidden border border-gray-200 shadow-inner">
+                              <Image
+                                src={location.image}
+                                alt={location.title}
+                                fill
+                                className="object-cover"
+                              />
+                            </div>
+
+                            {/* Tape pieces for right cards */}
+                            <div className="absolute -top-2 left-4 w-8 h-4 bg-yellow-200 transform -rotate-12 z-10 rounded-sm shadow-md opacity-90"></div>
+                            <div className="absolute -top-1 right-5 w-6 h-3 bg-yellow-200 transform rotate-12 z-10 rounded-sm shadow-md opacity-90"></div>
+
+                            {/* Handwritten title */}
+                            <div className="absolute bottom-3 left-2 right-2 text-center">
+                              <p className="text-sm font-medium text-gray-800 leading-tight transform -rotate-1">
+                                {location.title}
+                              </p>
+                            </div>
+
+                            {/* Aging spots */}
+                            <div className="absolute top-6 right-4 w-2 h-2 rounded-full bg-yellow-100 opacity-60"></div>
+                            <div className="absolute top-8 left-5 w-1 h-1 rounded-full bg-amber-100 opacity-40"></div>
+                            <div className="absolute bottom-10 right-2 w-1 h-1 rounded-full bg-gray-300 opacity-50"></div>
+
+                            {/* Additional aging effects for right cards */}
+                            <div className="absolute top-0 right-0 w-3 h-3 bg-white transform rotate-45 -translate-y-1 translate-x-1 opacity-90"></div>
+                            <div className="absolute top-3 left-1 w-10 h-px bg-gray-200 opacity-30 transform rotate-12"></div>
+                            <div className="absolute top-4 left-2 w-16 h-px bg-gray-200 opacity-30 transform rotate-12"></div>
+                          </div>
+                        </motion.div>
+                      </motion.div>
+                      <motion.div 
+                        className="w-1/2 pl-4 flex justify-start items-start"
+                        variants={slideInRight}
+                      >
+                        {/* Description text on right side */}
+                        <div className="w-32 text-left">
+                          <p className="text-sm text-gray-600 leading-relaxed whitespace-pre-line">
+                            {location.description}
+                          </p>
+                        </div>
+                      </motion.div>
+                    </>
+                  )}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Desktop Timeline - Original layout but with better spacing */}
+        <motion.div 
+          className="hidden md:block"
+          initial="initial"
+          whileInView="animate"
+          viewport={{ once: true, amount: 0.2 }}
+          variants={staggerContainer}
+        >
+          {/* Central vertical line */}
+          <motion.div 
+            className="absolute left-1/2 top-0 bottom-0 w-px bg-[#8C614F] transform -translate-x-1/2"
+            initial={{ scaleY: 0 }}
+            whileInView={{ scaleY: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1.5, ease: "easeOut" }}
+          ></motion.div>
+
+          {/* Timeline items */}
+          <div className="space-y-16 lg:space-y-20">
+            {mapLocations.map((location, index) => (
+              <motion.div 
+                key={location.id} 
+                className="relative"
+                variants={fadeInUp}
+                custom={index}
+              >
+                {/* Central dot */}
+                <motion.div 
+                  className="absolute left-1/2 w-3 h-3 bg-[#8C614F] rounded-full transform -translate-x-1/2 z-10"
+                  initial={{ scale: 0 }}
+                  whileInView={{ scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: index * 0.3 }}
+                ></motion.div>
+
+                {location.side === "right" ? (
+                  // Right side layout
+                  <div className="flex">
+                    <div className="w-1/2 pr-8 lg:pr-12">
+                      {/* Empty space on left */}
+                    </div>
+
+                    <motion.div 
+                      className="w-1/2 pl-8 lg:pl-16"
+                      variants={slideInRight}
+                    >
+                      {/* Polaroid on right side */}
+                      <motion.div 
+                        className="inline-block cursor-pointer transform rotate-3 hover:rotate-0 transition-all duration-300 hover:scale-105 mb-6"
+                        whileHover={{ rotate: 0, scale: 1.05 }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        <div className="relative w-44 lg:w-52 h-52 lg:h-60 bg-yellow-50 shadow-2xl p-3 lg:p-4 pb-8 lg:pb-10 rounded-sm">
+                          {/* Photo area */}
+                          <div className="relative w-full h-32 lg:h-36 bg-gray-100 overflow-hidden border border-gray-200 shadow-inner">
+                            <Image
+                              src={location.image}
+                              alt={location.title}
+                              fill
+                              className="object-cover"
+                            />
+                          </div>
+
+                          {/* Tape pieces */}
+                          <div className="absolute -top-3 left-4 lg:left-6 w-10 lg:w-12 h-5 lg:h-6 bg-yellow-200 transform -rotate-12 z-10 rounded-sm shadow-md opacity-90"></div>
+                          <div className="absolute -top-2 right-6 lg:right-8 w-8 lg:w-10 h-4 lg:h-5 bg-yellow-200 transform rotate-12 z-10 rounded-sm shadow-md opacity-90"></div>
+
+                          {/* Handwritten title */}
+                          <div className="absolute bottom-3 lg:bottom-4 left-3 lg:left-4 right-3 lg:right-4 text-center">
+                            <p className="text-sm lg:text-base font-medium text-gray-800 leading-tight transform -rotate-1">
+                              {location.title}
+                            </p>
+                          </div>
+
+                          {/* Aging spots */}
+                          <div className="absolute top-6 lg:top-8 right-5 lg:right-6 w-2 lg:w-3 h-2 lg:h-3 rounded-full bg-yellow-100 opacity-60"></div>
+                          <div className="absolute top-10 lg:top-12 left-6 lg:left-8 w-1 lg:w-2 h-1 lg:h-2 rounded-full bg-amber-100 opacity-40"></div>
+                        </div>
+                      </motion.div>
+
+                      {/* Content below polaroid */}
+                      <motion.div 
+                        className="max-w-xs"
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.8, delay: 0.2 }}
+                      >
+                        <p className="text-xs lg:text-sm text-gray-600 leading-relaxed whitespace-pre-line">
+                          {location.description}
+                        </p>
+                      </motion.div>
+                    </motion.div>
+                  </div>
+                ) : (
+                  // Left side layout
+                  <div className="flex">
+                    <motion.div 
+                      className="w-1/2 pr-8 lg:pr-16"
+                      variants={slideInLeft}
+                    >
+                      {/* Polaroid on left side */}
+                      <motion.div 
+                        className="inline-block cursor-pointer transform -rotate-2 hover:rotate-0 transition-all duration-300 hover:scale-105 float-right mb-6"
+                        whileHover={{ rotate: 0, scale: 1.05 }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        <div className="relative w-40 lg:w-48 h-48 lg:h-56 bg-orange-50 shadow-xl p-3 lg:p-5 pb-7 lg:pb-9 rounded-sm">
+                          {/* Photo area */}
+                          <div className="relative w-full h-32 lg:h-36 bg-gray-50 overflow-hidden border border-gray-300 shadow-inner">
+                            <Image
+                              src={location.image}
+                              alt={location.title}
+                              fill
+                              className="object-cover"
+                            />
+                          </div>
+
+                          {/* Different tape arrangement */}
+                          <div className="absolute -top-2 left-6 lg:left-8 w-12 lg:w-14 h-4 lg:h-5 bg-amber-200 transform -rotate-6 z-10 rounded-sm shadow-md opacity-85"></div>
+                          <div className="absolute -top-1 right-4 lg:right-6 w-7 lg:w-9 h-5 lg:h-6 bg-amber-200 transform rotate-12 z-10 rounded-sm shadow-md opacity-90"></div>
+
+                          {/* Handwritten title */}
+                          <div className="absolute bottom-2 lg:bottom-3 left-2 lg:left-3 right-2 lg:right-3 text-center">
+                            <p className="text-xs lg:text-sm font-semibold text-gray-700 leading-tight transform rotate-1">
+                              {location.title}
+                            </p>
+                          </div>
+
+                          {/* Different aging pattern */}
+                          <div className="absolute top-5 lg:top-6 left-3 lg:left-4 w-1 lg:w-2 h-1 lg:h-2 rounded-full bg-amber-200 opacity-50"></div>
+                          <div className="absolute top-16 lg:top-20 right-6 lg:right-8 w-3 lg:w-4 h-1 lg:h-2 rounded-full bg-yellow-50 opacity-70"></div>
+                        </div>
+                      </motion.div>
+
+                      {/* Content below polaroid */}
+                      <motion.div 
+                        className="max-w-xs float-right text-right clear-right"
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.8, delay: 0.2 }}
+                      >
+                        <p className="text-xs lg:text-sm text-gray-600 leading-relaxed whitespace-pre-line">
+                          {location.description}
+                        </p>
+                      </motion.div>
+                    </motion.div>
+
+                    <div className="w-1/2 pl-8 lg:pl-12">
+                      {/* Empty space on right */}
+                    </div>
+                  </div>
+                )}
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+      </div>
+    </section>
+  );
 };
 
 export default CityMaps;
