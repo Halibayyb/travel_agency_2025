@@ -1,6 +1,7 @@
 'use client';
 
 import Image from "next/image";
+import Link from "next/link";
 import { useState, useRef } from "react";
 import { motion } from "framer-motion";
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -16,43 +17,50 @@ import 'swiper/css/pagination';
 
 // import image
 import royal_img from "@/public/assets/royal_palace_img.jpg"
+import vv_img from "@/public/assets/vv_view.jpg";
+import vte_img from "@/public/assets/thatluang.jpg"
+import nk_img from "@/public/assets/nong_khiaw_river.jpg"
 
-// Gallery data
+// Gallery data with destination links
 const galleryItems = [
     {
         id: 1,
-        title: "KUANG SI WATERFALL",
+        title: "ROYAL PALACE",
         subtitle: "Natural Wonder",
         location: "Luang Prabang",
+        destination: "luang-prabang", // Add destination slug
         description: "A stunning multi-tier waterfall with turquoise pools, perfect for swimming and relaxation in nature.",
         image: royal_img,
         placeholder: "bg-blue-200"
     },
     {
         id: 2,
-        title: "ROYAL PALACE MUSEUM",
-        subtitle: "IN LUANG PRABANG",
-        location: "Sofitel Luang Prabang",
-        description: "An enjoyable stroll from Sofitel Luang Prabang brings you to a fascinating display of Laos history and culture, the Royal Palace and Museum.",
-        image: royal_img,
+        title: "VANG VIENG NATURE",
+        subtitle: "Adventure Paradise",
+        location: "Vang Vieng",
+        destination: "vang-vieng", // Add destination slug
+        description: "Experience outdoor adventures with stunning karst landscapes, blue lagoons, and thrilling activities in Vang Vieng.",
+        image: vv_img,
         placeholder: "bg-amber-200"
     },
     {
         id: 3,
-        title: "TRADITIONAL VILLAGE",
-        subtitle: "Cultural Experience",
-        location: "Luang Prabang",
-        description: "Experience authentic Lao village life and traditional crafts in the countryside surrounding Luang Prabang.",
-        image: royal_img,
+        title: "THAT LUANG",
+        subtitle: "Golden Stupa",
+        location: "Vientiane",
+        destination: "vientiane", // Add destination slug
+        description: "Visit the most important national monument of Laos, a magnificent golden stupa in the heart of Vientiane.",
+        image: vte_img,
         placeholder: "bg-green-200"
     },
     {
         id: 4,
-        title: "WAT XIENG THONG",
-        subtitle: "Sacred Temple",
-        location: "Luang Prabang",
-        description: "The most important monastery in Luang Prabang, showcasing classic Lao architecture and Buddhist art.",
-        image: royal_img,
+        title: "NONG KHIAW LAKE",
+        subtitle: "Riverside Paradise",
+        location: "Nong Khiaw",
+        destination: "nong-khiaw", // Add destination slug
+        description: "Discover dramatic limestone karsts and serene river views in the stunning mountain town of Nong Khiaw.",
+        image: nk_img,
         placeholder: "bg-orange-200"
     },
     {
@@ -60,6 +68,7 @@ const galleryItems = [
         title: "NIGHT MARKET",
         subtitle: "Local Shopping",
         location: "Luang Prabang",
+        destination: "luang-prabang", // Add destination slug
         description: "Browse handmade textiles, crafts, and local delicacies at the vibrant night market on Sisavangvong Road.",
         image: royal_img,
         placeholder: "bg-purple-200"
@@ -149,7 +158,6 @@ const CitiesGallery = () => {
                         return (
                             <SwiperSlide key={`${item.id}-${index}`}>
                                 <motion.div
-                                    
                                     className={`transition-all duration-500 cursor-pointer mx-2 ${
                                         isMiddle
                                             ? "scale-100 opacity-100"
@@ -161,59 +169,70 @@ const CitiesGallery = () => {
                                         transition: { duration: 0.3 }
                                     }}
                                 >
-                                    {/* Image Container */}
-                                    <motion.div 
-                                   
-                                        className="relative h-80 lg:h-96 overflow-hidden"
-                                    >
-                                        {/* Placeholder background - replace with actual image */}
-                                        <div className={`absolute inset-0 ${item.placeholder}`}></div>
-                                        {/* Uncomment when you have images */}
-                                        <Image
-                                            src={item.image}
-                                            alt={item.title}
-                                            fill
-                                            className="object-cover transition-transform duration-700 hover:scale-110"
-                                        />
-                                        
-                                        {/* Overlay */}
-                                        <div className="absolute inset-0  transition-opacity duration-300 hover:bg-black/20"></div>
-                                        
-                                        {/* Text Overlay */}
+                                    {/* Wrap the entire card with Link */}
+                                    <Link href={`/destinations/${item.destination}`} className="block">
+                                        {/* Image Container */}
                                         <motion.div 
-                                            {...animations.slideInLeft}
-                                            transition={{ duration: 0.7, delay: index * 0.2 }}
-                                            className="absolute bottom-6 left-6 text-white"
+                                            className="relative h-80 lg:h-96 overflow-hidden"
                                         >
-                                            <motion.h3 
-                                                className={`font-bold mb-1 transition-all duration-300 ${
-                                                    isMiddle ? "text-xl md:text-2xl lg:text-3xl" : "text-lg md:text-xl"
-                                                }`}
-                                                whileHover={{ x: 5 }}
-                                                transition={{ duration: 0.2 }}
+                                            {/* Placeholder background */}
+                                            <div className={`absolute inset-0 ${item.placeholder}`}></div>
+                                            
+                                            <Image
+                                                src={item.image}
+                                                alt={item.title}
+                                                fill
+                                                className="object-cover transition-transform duration-700 hover:scale-110"
+                                            />
+                                            
+                                            {/* Overlay */}
+                                            <div className="absolute inset-0 transition-opacity duration-300 hover:bg-black/20"></div>
+                                            
+                                            {/* Text Overlay */}
+                                            <motion.div 
+                                                {...animations.slideInLeft}
+                                                transition={{ duration: 0.7, delay: index * 0.2 }}
+                                                className="absolute bottom-6 left-6 text-white"
                                             >
-                                                {item.title}
-                                            </motion.h3>
-                                            <motion.p 
-                                                className={`opacity-90 transition-all duration-300 ${
-                                                    isMiddle ? "text-sm md:text-base lg:text-lg" : "text-xs md:text-sm"
-                                                }`}
-                                                whileHover={{ x: 3 }}
-                                                transition={{ duration: 0.2, delay: 0.1 }}
-                                            >
-                                                {item.subtitle}
-                                            </motion.p>
-                                            <motion.p 
-                                                className={`opacity-75 mt-1 transition-all duration-300 ${
-                                                    isMiddle ? "text-xs md:text-sm" : "text-xs"
-                                                }`}
-                                                whileHover={{ x: 2 }}
-                                                transition={{ duration: 0.2, delay: 0.2 }}
-                                            >
-                                                {item.location}
-                                            </motion.p>
+                                                <motion.h3 
+                                                    className={`font-bold mb-1 transition-all duration-300 ${
+                                                        isMiddle ? "text-xl md:text-2xl lg:text-3xl" : "text-lg md:text-xl"
+                                                    }`}
+                                                    whileHover={{ x: 5 }}
+                                                    transition={{ duration: 0.1 }}
+                                                >
+                                                    {item.title}
+                                                </motion.h3>
+                                                <motion.p 
+                                                    className={`opacity-90 transition-all duration-300 ${
+                                                        isMiddle ? "text-sm md:text-base lg:text-lg" : "text-xs md:text-sm"
+                                                    }`}
+                                                    whileHover={{ x: 3 }}
+                                                    transition={{ duration: 0.1, delay: 0.1 }}
+                                                >
+                                                    {item.subtitle}
+                                                </motion.p>
+                                                <motion.p 
+                                                    className={`opacity-75 mt-1 transition-all duration-300 ${
+                                                        isMiddle ? "text-xs md:text-sm" : "text-xs"
+                                                    }`}
+                                                    whileHover={{ x: 2 }}
+                                                    transition={{ duration: 0.2, delay: 0.2 }}
+                                                >
+                                                    {item.location}
+                                                </motion.p>
+                                            </motion.div>
+
+                                            {/* Explore Button Overlay - Only visible on hover and when active */}
+                                            {isMiddle && (
+                                                <div className="absolute inset-0 bg-white/10 bg-opacity-0 hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center opacity-0 hover:opacity-100">
+                                                    <span className="bg-amber-800 text-white px-6 py-3 rounded-full text-sm font-medium ">
+                                                        Explore {item.location}
+                                                    </span>
+                                                </div>
+                                            )}
                                         </motion.div>
-                                    </motion.div>
+                                    </Link>
                                     
                                     {/* Content */}
                                     <motion.div 
@@ -234,7 +253,7 @@ const CitiesGallery = () => {
                                             {item.description}
                                         </motion.p>
                                         
-                                      
+                                       
                                     </motion.div>
                                 </motion.div>
                             </SwiperSlide>
@@ -242,9 +261,6 @@ const CitiesGallery = () => {
                     })}
                 </Swiper>
             </motion.div>
-
-            {/* Custom Swiper Styles */}
-          
         </section>
     );
 };
