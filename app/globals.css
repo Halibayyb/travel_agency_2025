@@ -41,3 +41,27 @@ body {
 .fcolor2 {
   color: #FFFAE7;
 }
+
+/* Navigation Only Styles */
+.destination-swiper .swiper-button-next,
+.destination-swiper .swiper-button-prev {
+  width: 40px !important;
+  height: 40px !important;
+  margin-top: -20px !important;
+  margin-left: 10px;
+  background-color: rgba(146, 64, 14, 0.9) !important;
+  border-radius: 50% !important;
+  color: white !important;
+  transition: all 0.3s ease !important;
+}
+
+.destination-swiper .swiper-button-next:hover,
+.destination-swiper .swiper-button-prev:hover {
+  background-color: rgb(146, 64, 14) !important;
+  transform: scale(1.1) !important;
+}
+
+.destination-swiper .swiper-button-next::after,
+.destination-swiper .swiper-button-prev::after {
+  font-size: 16px !important;
+}

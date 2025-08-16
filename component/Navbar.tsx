@@ -6,6 +6,8 @@ import React, { useEffect, useState, useRef } from "react";
 const NAV_ITEMS = [
     { id: 'home', label: 'HOME', href: '#', sectionId: null },
     { id: 'about', label: 'ABOUT', href: '#about', sectionId: 'about' },
+    { id: 'city', label: 'CITY', href: '#city', sectionId: 'city' },
+
     { id: 'service', label: 'SERVICE', href: '#service', sectionId: 'service' },
     { id: 'contact', label: 'CONTACT', href: '#contact', sectionId: 'contact' }
 ] as const;
@@ -34,8 +36,17 @@ const Navbar = () => {
     const [activeSection, setActiveSection] = useState('home');
     const navbarRef = useRef<HTMLDivElement>(null);
     
-    // Check if user has scrolled past the initial viewport
-    const isScrolled = scrollY > 700;
+   const [isLandingPage, setIsLandingPage] = useState(false);
+    
+    useEffect(() => {
+        const path = window.location.pathname;
+        // Define which paths should have transparent navbar initially
+        const transparentNavPaths = ['/', '/home'];
+        setIsLandingPage(transparentNavPaths.includes(path));
+    }, []);
+
+    // Modify your existing isScrolled logic
+    const isScrolled = scrollY > 700 || !isLandingPage;
 
     // Function to detect which section is currently visible
     const detectActiveSection = () => {

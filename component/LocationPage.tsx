@@ -1,16 +1,33 @@
+'use client';
+import { motion } from "framer-motion";
+
+// Import animations
+import { staggerContainer, staggerChild } from '@/src/lib/animations';
 
 const LocationPage = () => {
     return(
-        <section className=" bg-gray-50">
+        <section className="bg-gray-50">
             {/* Header */}
-            <div className="text-center py-16 px-4">
-                <h1 className="text-4xl md:text-5xl font-light text-gray-800 mb-6 tracking-widest">
+            <motion.div 
+                initial="initial"
+                whileInView="animate"
+                viewport={{ once: false, amount: 0.3 }}
+                variants={staggerContainer}
+                className="text-center py-16 px-4"
+            >
+                <motion.h1 
+                    variants={staggerChild}
+                    className="text-2xl xl:text-5xl font-light text-gray-800 mb-6 tracking-widest"
+                >
                     LOCATION
-                </h1>
-                <p className="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
+                </motion.h1>
+                <motion.p 
+                    variants={staggerChild}
+                    className="text-base xl:text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed"
+                >
                     An enjoyable stroll from Sofitel Luang Prabang brings you to a fascinating display of Laos
-                </p>
-            </div>
+                </motion.p>
+            </motion.div>
 
             {/* Map iframe - Full Width */}
             <div className="w-full h-96 md:h-[500px] lg:h-[600px]">
@@ -32,4 +49,3 @@ const LocationPage = () => {
 }
 
 export default LocationPage;
-

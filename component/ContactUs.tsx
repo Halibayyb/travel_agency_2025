@@ -25,10 +25,10 @@ const ContactUs = () => {
     };
 
     return(
-        <section className="min-h-screen bg-gray-50 py-16 px-10">
+        <section id="contact" className="min-h-screen bg-gray-50 py-16 px-10">
             {/* Header */}
             <div className="text-center mb-16">
-                <h1 className="text-4xl md:text-5xl font-light text-gray-800 tracking-widest">
+                <h1 className="text-2xl xl:text-5xl font-light text-gray-800 tracking-widest">
                     CONTACT US
                 </h1>
             </div>
@@ -36,7 +36,7 @@ const ContactUs = () => {
             <div className="max-w-7xl mx-auto">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
                     {/* Information Section - order-2 on small screens, order-1 on large screens */}
-                    <div className="space-y-12 order-2 lg:order-1">
+                    <div className="hidden xl:block space-y-12 order-2 lg:order-1">
                         {/* Call Us */}
                         <div>
                             <h2 className="text-2xl font-light text-gray-800 mb-2 xl:mb-6 tracking-wide">
@@ -46,7 +46,7 @@ const ContactUs = () => {
                                 An enjoyable stroll from Sofitel Luang Prabang brings you to a
                             </p>
                             <div className="flex items-center">
-                                <div className="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center mr-4">
+                                <div className="w-12 h-12  rounded-full flex items-center justify-center mr-4">
                                     <Phone className="w-5 h-5 text-amber-700" />
                                 </div>
                                 <span className="text-gray-700 text-sm xl:text-lg">
@@ -64,7 +64,7 @@ const ContactUs = () => {
                                 An enjoyable stroll from Sofitel Luang Prabang brings you to a
                             </p>
                             <div className="flex items-center">
-                                <div className="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center mr-4">
+                                <div className="w-12 h-12  rounded-full flex items-center justify-center mr-4">
                                     <Mail className="w-5 h-5 text-amber-700" />
                                 </div>
                                 <span className="text-gray-700 text-sm xl:text-lg">
@@ -82,7 +82,7 @@ const ContactUs = () => {
                                 An enjoyable stroll from Sofitel Luang Prabang brings you to a
                             </p>
                             <div className="flex items-center">
-                                <div className="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center mr-4">
+                                <div className="w-12 h-12  rounded-full flex items-center justify-center mr-4">
                                     <MapPin className="w-5 h-5 text-amber-700" />
                                 </div>
                                 <span className="text-gray-700 text-sm xl:text-lg">
@@ -94,10 +94,10 @@ const ContactUs = () => {
 
                     {/* Message Form Section - order-1 on small screens, order-2 on large screens */}
                     <div className="order-1 lg:order-2">
-                        <h2 className="text-2xl font-light text-gray-800 mb-2 xl:mb-6 tracking-wide">
+                        <h2 className="text-lg xl:text-2xl font-light text-gray-800 mb-2 xl:mb-6 tracking-wide">
                             Send a Message
                         </h2>
-                        <p className="text-gray-600 mb-8 leading-relaxed">
+                        <p className="text-md xl:text-xl text-gray-600 mb-8 leading-relaxed">
                             An enjoyable stroll from Sofitel Luang Prabang brings you to a fascinating display of Laos
                         </p>
 

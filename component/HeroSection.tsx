@@ -2,7 +2,7 @@
 
 const HeroSection = () => {
     return (
-        <section className="relative min-h-screen">
+        <section id="home" className="relative min-h-screen">
             {/* Background Video with parallax effect */}
             <div className="absolute inset-0">
                 <video
@@ -13,7 +13,7 @@ const HeroSection = () => {
                     playsInline
                 >
                     {/* Fallback for browsers that don't support the video format */}
-                    <source src="video/lpb_video_1.mp4" type="video/mp4" />
+                    <source src="video/lpb_video_2.mp4" type="video/mp4" />
                     Your browser does not support the video tag.
                 </video>
                 

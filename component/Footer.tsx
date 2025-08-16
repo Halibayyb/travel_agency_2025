@@ -5,7 +5,7 @@ const Footer = () => {
     const currentYear = new Date().getFullYear();
 
     return (
-        <footer className="bg-amber-900 text-white py-16 px-4">
+        <footer className="bg-[#52392F] text-white py-16 px-4">
             <div className="max-w-7xl mx-auto">
                 {/* Header Section */}
                 <div className="mb-12">
@@ -18,7 +18,7 @@ const Footer = () => {
                 </div>
 
                 {/* Divider Line */}
-                <div className="w-full h-px bg-amber-700 mb-16"></div>
+                <div className="w-full h-px bg-white mb-16"></div>
 
                 {/* Footer Content Grid - Contact Info (hidden on small screens, shown on xl+) */}
                 <div className="hidden xl:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
@@ -128,7 +128,7 @@ const Footer = () => {
                 </div>
 
                 {/* Copyright Section */}
-                <div className="border-t border-amber-700 pt-8">
+                <div className="border-t border-white pt-8">
                     <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
                         {/* Copyright Text */}
                         <div className="text-center md:text-left">

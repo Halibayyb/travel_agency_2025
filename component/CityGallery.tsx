@@ -2,13 +2,16 @@
 
 import Image from "next/image";
 import { useState, useRef } from "react";
+import { motion } from "framer-motion";
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+import { Pagination, Autoplay } from 'swiper/modules';
 import type { Swiper as SwiperType } from 'swiper';
+
+// Import animations
+import { animations, staggerContainer, staggerChild } from '@/src/lib/animations';
 
 // Import Swiper styles
 import 'swiper/css';
-import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
 // import image
@@ -82,29 +85,52 @@ const CitiesGallery = () => {
     return (
         <section className="min-h-screen bg-yellow-50 py-16 overflow-hidden">
             {/* Header Section */}
-            <div className="container mx-auto px-6 mb-16">
-                <div className="text-center">
-                    <p className="text-gray-500 text-sm mb-4">our gallery</p>
-                    <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-2 tracking-wide">
+            <motion.div 
+                {...animations.fadeInUp}
+                className="container mx-auto px-6 mb-16"
+            >
+                <motion.div 
+                    initial="initial"
+                    whileInView="animate"
+                    viewport={{ once: false, amount: 0.2 }}
+                    variants={staggerContainer}
+                    className="text-center"
+                >
+                    <motion.p 
+                        variants={staggerChild}
+                        className="text-gray-500 text-sm mb-4"
+                    >
+                        our gallery
+                    </motion.p>
+                    <motion.h1 
+                        variants={staggerChild}
+                        className="text-3xl md:text-4xl font-bold text-gray-800 mb-2 tracking-wide"
+                    >
                         RELAXATION AND LUXURY
-                    </h1>
-                    <h2 className="text-2xl md:text-3xl font-bold text-gray-800 tracking-wide">
+                    </motion.h1>
+                    <motion.h2 
+                        variants={staggerChild}
+                        className="text-2xl md:text-3xl font-bold text-gray-800 tracking-wide"
+                    >
                         DURING YOUR STAY
-                    </h2>
-                </div>
-            </div>
+                    </motion.h2>
+                </motion.div>
+            </motion.div>
 
             {/* Scaled Gallery Swiper */}
-            <div className="relative">
+            <motion.div 
+                {...animations.scaleIn}
+                transition={{ duration: 0.8, delay: 0.3 }}
+                className="relative"
+            >
                 <Swiper
                     onSwiper={setSwiperInstance}
-                    modules={[Navigation, Pagination, Autoplay]}
+                    modules={[ Pagination, Autoplay]}
                     loop={true}
                     centeredSlides={true}
-                    navigation={true}
                     pagination={{ clickable: true }}
                     autoplay={{
-                        delay: 2500,
+                        delay: 3000,
                         disableOnInteraction: false,
                     }}
                     onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
@@ -122,16 +148,24 @@ const CitiesGallery = () => {
 
                         return (
                             <SwiperSlide key={`${item.id}-${index}`}>
-                                <div
+                                <motion.div
+                                    
                                     className={`transition-all duration-500 cursor-pointer mx-2 ${
                                         isMiddle
                                             ? "scale-100 opacity-100"
                                             : "scale-75 opacity-60"
                                     }`}
                                     onClick={() => handleCardClick(index)}
+                                    whileHover={{ 
+                                        scale: isMiddle ? 1.02 : 0.77,
+                                        transition: { duration: 0.3 }
+                                    }}
                                 >
                                     {/* Image Container */}
-                                    <div className="relative h-80 lg:h-96  overflow-hidden">
+                                    <motion.div 
+                                   
+                                        className="relative h-80 lg:h-96 overflow-hidden"
+                                    >
                                         {/* Placeholder background - replace with actual image */}
                                         <div className={`absolute inset-0 ${item.placeholder}`}></div>
                                         {/* Uncomment when you have images */}
@@ -139,128 +173,78 @@ const CitiesGallery = () => {
                                             src={item.image}
                                             alt={item.title}
                                             fill
-                                            className="object-cover"
+                                            className="object-cover transition-transform duration-700 hover:scale-110"
                                         />
                                         
                                         {/* Overlay */}
-                                        <div className="absolute inset-0 bg-black/40"></div>
+                                        <div className="absolute inset-0  transition-opacity duration-300 hover:bg-black/20"></div>
                                         
                                         {/* Text Overlay */}
-                                        <div className="absolute bottom-6 left-6 text-white">
-                                            <h3 className={`font-bold mb-1 transition-all duration-300 ${
-                                                isMiddle ? "text-xl md:text-2xl lg:text-3xl" : "text-lg md:text-xl"
-                                            }`}>
+                                        <motion.div 
+                                            {...animations.slideInLeft}
+                                            transition={{ duration: 0.7, delay: index * 0.2 }}
+                                            className="absolute bottom-6 left-6 text-white"
+                                        >
+                                            <motion.h3 
+                                                className={`font-bold mb-1 transition-all duration-300 ${
+                                                    isMiddle ? "text-xl md:text-2xl lg:text-3xl" : "text-lg md:text-xl"
+                                                }`}
+                                                whileHover={{ x: 5 }}
+                                                transition={{ duration: 0.2 }}
+                                            >
                                                 {item.title}
-                                            </h3>
-                                            <p className={`opacity-90 transition-all duration-300 ${
-                                                isMiddle ? "text-sm md:text-base lg:text-lg" : "text-xs md:text-sm"
-                                            }`}>
+                                            </motion.h3>
+                                            <motion.p 
+                                                className={`opacity-90 transition-all duration-300 ${
+                                                    isMiddle ? "text-sm md:text-base lg:text-lg" : "text-xs md:text-sm"
+                                                }`}
+                                                whileHover={{ x: 3 }}
+                                                transition={{ duration: 0.2, delay: 0.1 }}
+                                            >
                                                 {item.subtitle}
-                                            </p>
-                                            <p className={`opacity-75 mt-1 transition-all duration-300 ${
-                                                isMiddle ? "text-xs md:text-sm" : "text-xs"
-                                            }`}>
+                                            </motion.p>
+                                            <motion.p 
+                                                className={`opacity-75 mt-1 transition-all duration-300 ${
+                                                    isMiddle ? "text-xs md:text-sm" : "text-xs"
+                                                }`}
+                                                whileHover={{ x: 2 }}
+                                                transition={{ duration: 0.2, delay: 0.2 }}
+                                            >
                                                 {item.location}
-                                            </p>
-                                        </div>
-                                    </div>
+                                            </motion.p>
+                                        </motion.div>
+                                    </motion.div>
                                     
                                     {/* Content */}
-                                    <div className={`p-4 bg-transparent transition-all duration-300 ${
-                                        isMiddle ? "opacity-100" : "opacity-0"
-                                    }`}>
-                                        <p className={`leading-relaxed mb-4 transition-all duration-300 ${
-                                            isMiddle ? "text-gray-600 text-sm md:text-base" : "text-transparent text-xs md:text-sm"
-                                        }`}>
+                                    <motion.div 
+                                        {...animations.fadeInUp}
+                                        transition={{ duration: 0.6, delay: index * 0.25 }}
+                                        className={`p-4 bg-transparent transition-all duration-300 ${
+                                            isMiddle ? "opacity-100" : "opacity-0"
+                                        }`}
+                                    >
+                                        <motion.p 
+                                            className={`leading-relaxed mb-4 transition-all duration-300 ${
+                                                isMiddle ? "text-gray-600 text-sm md:text-base" : "text-transparent text-xs md:text-sm"
+                                            }`}
+                                            initial={{ opacity: 0, y: 10 }}
+                                            whileInView={{ opacity: isMiddle ? 1 : 0, y: 0 }}
+                                            transition={{ duration: 0.5, delay: 0.2 }}
+                                        >
                                             {item.description}
-                                        </p>
+                                        </motion.p>
                                         
-                                        <button className={`font-medium border-b transition-all duration-300 ${
-                                            isMiddle 
-                                                ? "text-gray-800 border-gray-800 hover:text-gray-600 hover:border-gray-600 text-sm" 
-                                                : "text-transparent border-transparent text-xs"
-                                        }`}>
-                                            Package More
-                                        </button>
-                                    </div>
-                                </div>
+                                      
+                                    </motion.div>
+                                </motion.div>
                             </SwiperSlide>
                         );
                     })}
                 </Swiper>
-            </div>
+            </motion.div>
 
             {/* Custom Swiper Styles */}
-            <style jsx global>{`
-                .gallery-swiper {
-                    width: 100%;
-                    height: auto;
-                    padding-bottom: 60px;
-                    overflow: visible;
-                }
-                
-                .gallery-swiper .swiper-wrapper {
-                    align-items: center;
-                }
-                
-                .gallery-swiper .swiper-slide {
-                    height: auto;
-                    user-select: none;
-                    transition: all 0.5s ease;
-                }
-                
-                .gallery-swiper .swiper-button-next,
-                .gallery-swiper .swiper-button-prev {
-                    color: #92400e;
-                    font-weight: bold;
-                    width: 40px;
-                    height: 40px;
-                    margin-top: -20px;
-                    z-index: 10;
-                }
-                
-                .gallery-swiper .swiper-button-next:after,
-                .gallery-swiper .swiper-button-prev:after {
-                    font-size: 20px;
-                }
-                
-                .gallery-swiper .swiper-button-next {
-                    right: 20px;
-                }
-                
-                .gallery-swiper .swiper-button-prev {
-                    left: 20px;
-                }
-                
-                .gallery-swiper .swiper-pagination {
-                    bottom: 20px;
-                    text-align: center;
-                }
-                
-                .gallery-swiper .swiper-pagination-bullet {
-                    background: #d1d5db;
-                    opacity: 1;
-                    width: 10px;
-                    height: 10px;
-                    margin: 0 4px;
-                    transition: all 0.3s ease;
-                }
-                
-                .gallery-swiper .swiper-pagination-bullet-active {
-                    background: #92400e;
-                    transform: scale(1.2);
-                }
-                
-                @media (max-width: 768px) {
-                    .gallery-swiper .swiper-button-next {
-                        right: 10px;
-                    }
-                    
-                    .gallery-swiper .swiper-button-prev {
-                        left: 10px;
-                    }
-                }
-            `}</style>
+          
         </section>
     );
 };
