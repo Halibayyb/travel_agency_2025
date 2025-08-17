@@ -91,17 +91,16 @@ const CityMaps = () => {
   return (
     <section id="city" className="min-h-screen py-8 md:py-16 relative overflow-hidden">
       {/* Background Map */}
-      <div className="absolute inset-0">
-        <Image
-          src={mapBackground}
-          alt="Luang Prabang Map"
-          fill
-          priority
-          className="object-cover"
-        />
-        {/* Semi-transparent overlay for better text readability */}
-        <div className="absolute inset-0 bg-yellow-50"></div>
-      </div>
+      <div className="absolute inset-0 bg-white">
+  <Image
+    src={mapBackground}
+    alt="Luang Prabang Map"
+    fill
+    priority
+    className="absolute inset-0 object-cover"  // ← Changed to absolute
+  />
+  <div className="absolute inset-0 "></div>  
+</div>
 
       {/* Header */}
       <motion.div 
@@ -110,12 +109,18 @@ const CityMaps = () => {
         animate="animate"
         variants={fadeInUp}
       >
-        <h1 className="text-2xl lg:text-3xl font-bold text-gray-800 mb-2 tracking-wider">
-          RELAXATION AND LUXURY
-        </h1>
-        <h2 className="text-xl lg:text-2xl font-bold text-gray-800 tracking-wider">
-          DURING YOUR STAY
-        </h2>
+        <motion.p 
+                                variants={staggerContainer}
+                                className="font2 text-gray-500 text-lg mb-4"
+                            >
+                                our cities
+                            </motion.p>
+        <motion.h1 
+                                variants={staggerContainer}
+                                className="font1 text-3xl md:text-4xl font-bold text-gray-800 mb-2 tracking-wide"
+                            >
+                                FULL OF AMBITION
+                            </motion.h1>
       </motion.div>
 
       {/* Timeline Container */}
@@ -166,7 +171,7 @@ const CityMaps = () => {
                       >
                         {/* Description text on left side */}
                         <div className="w-32 text-right">
-                          <p className="text-sm text-gray-600 leading-relaxed whitespace-pre-line">
+                          <p className="font2 text-sm text-gray-600 leading-relaxed whitespace-pre-line">
                             {location.description}
                           </p>
                         </div>
@@ -204,7 +209,7 @@ const CityMaps = () => {
 
                               {/* Handwritten title */}
                               <div className="absolute bottom-3 left-2 right-2 text-center">
-                                <p className="text-sm font-medium text-gray-800 leading-tight transform rotate-1">
+                                <p className="font1 text-sm font-medium text-gray-800 leading-tight transform rotate-1">
                                   {location.title}
                                 </p>
                               </div>
@@ -222,7 +227,7 @@ const CityMaps = () => {
 
                               {/* Hover overlay */}
                               <div className="absolute inset-0 bg-black/20 bg-opacity-0 hover:bg-opacity-10 transition-all duration-300 flex items-center justify-center opacity-0 hover:opacity-100 rounded-sm">
-                                <span className="bg-amber-800 text-white px-3 py-1 rounded-full text-xs font-medium">
+                                <span className="font2 bg-amber-800 text-white px-3 py-1 rounded-full text-xs font-medium">
                                   Explore
                                 </span>
                               </div>
@@ -266,7 +271,7 @@ const CityMaps = () => {
 
                               {/* Handwritten title */}
                               <div className="absolute bottom-3 left-2 right-2 text-center">
-                                <p className="text-sm font-medium text-gray-800 leading-tight transform -rotate-1">
+                                <p className="font1 text-sm font-medium text-gray-800 leading-tight transform -rotate-1">
                                   {location.title}
                                 </p>
                               </div>
@@ -283,7 +288,7 @@ const CityMaps = () => {
 
                               {/* Hover overlay */}
                               <div className="absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-10 transition-all duration-300 flex items-center justify-center opacity-0 hover:opacity-100 rounded-sm">
-                                <span className="bg-amber-800 text-white px-3 py-1 rounded-full text-xs font-medium">
+                                <span className="font2 bg-amber-800 text-white px-3 py-1 rounded-full text-xs font-medium">
                                   Explore
                                 </span>
                               </div>
@@ -297,7 +302,7 @@ const CityMaps = () => {
                       >
                         {/* Description text on right side */}
                         <div className="w-32 text-left">
-                          <p className="text-sm text-gray-600 leading-relaxed whitespace-pre-line">
+                          <p className="font2 text-sm text-gray-600 leading-relaxed whitespace-pre-line">
                             {location.description}
                           </p>
                         </div>
@@ -385,7 +390,7 @@ const CityMaps = () => {
 
                             {/* Handwritten title */}
                             <div className="absolute bottom-3 lg:bottom-4 left-3 lg:left-4 right-3 lg:right-4 text-center">
-                              <p className="text-sm lg:text-base font-medium text-gray-800 leading-tight transform -rotate-1">
+                              <p className="font1 text-sm lg:text-base font-medium text-gray-800 leading-tight transform -rotate-1">
                                 {location.title}
                               </p>
                             </div>
@@ -396,7 +401,7 @@ const CityMaps = () => {
 
                             {/* Hover overlay */}
                             <div className="absolute inset-0 bg-black/20 bg-opacity-0 hover:bg-opacity-10 transition-all duration-300 flex items-center justify-center opacity-0 hover:opacity-100 rounded-sm">
-                              <span className="bg-amber-800 text-white px-4 py-2 rounded-full text-sm font-medium">
+                              <span className="font2 bg-amber-800 text-white px-4 py-2 rounded-full text-sm font-medium">
                                 Explore
                               </span>
                             </div>
@@ -412,7 +417,7 @@ const CityMaps = () => {
                         viewport={{ once: true }}
                         transition={{ duration: 0.8, delay: 0.2 }}
                       >
-                        <p className="text-xs lg:text-sm text-gray-600 leading-relaxed whitespace-pre-line">
+                        <p className="font2 text-xs lg:text-sm text-gray-600 leading-relaxed whitespace-pre-line">
                           {location.description}
                         </p>
                       </motion.div>
@@ -427,7 +432,7 @@ const CityMaps = () => {
                     >
                       {/* Polaroid on left side */}
                       <Link 
-                        href={`/destinations?/${location.destination} `}
+                        href={`/destinations/${location.destination} `}
                         
                         className="inline-block float-right"
                       >
@@ -454,7 +459,7 @@ const CityMaps = () => {
 
                             {/* Handwritten title */}
                             <div className="absolute bottom-2 lg:bottom-3 left-2 lg:left-3 right-2 lg:right-3 text-center">
-                              <p className="text-xs lg:text-sm font-semibold text-gray-700 leading-tight transform rotate-1">
+                              <p className="font1 text-xs lg:text-sm font-semibold text-gray-700 leading-tight transform rotate-1">
                                 {location.title}
                               </p>
                             </div>
@@ -465,7 +470,7 @@ const CityMaps = () => {
 
                             {/* Hover overlay */}
                             <div className="absolute inset-0 bg-black/20 bg-opacity-0 hover:bg-opacity-10 transition-all duration-300 flex items-center justify-center opacity-0 hover:opacity-100 rounded-sm">
-                              <span className="bg-amber-800 text-white px-4 py-2 rounded-full text-sm font-medium">
+                              <span className="font2 bg-amber-800 text-white px-4 py-2 rounded-full text-sm font-medium">
                                 Explore
                               </span>
                             </div>
@@ -481,7 +486,7 @@ const CityMaps = () => {
                         viewport={{ once: true }}
                         transition={{ duration: 0.8, delay: 0.2 }}
                       >
-                        <p className="text-xs lg:text-sm text-gray-600 leading-relaxed whitespace-pre-line">
+                        <p className="font2 text-xs lg:text-sm text-gray-600 leading-relaxed whitespace-pre-line">
                           {location.description}
                         </p>
                       </motion.div>

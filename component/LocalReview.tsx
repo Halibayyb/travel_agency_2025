@@ -3,6 +3,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
@@ -61,19 +62,19 @@ const LocalReview = () => {
             >
                 <motion.h1 
                     variants={staggerChild}
-                    className="text-lg text-gray-600 mb-2 font-light tracking-wider"
+                    className="font2 text-lg text-gray-600 mb-2 font-light tracking-wider"
                 >
                     Review
                 </motion.h1>
                 <motion.h2 
                     variants={staggerChild}
-                    className="text-4xl md:text-5xl font-light text-gray-800 mb-6 tracking-widest"
+                    className="font1 text-4xl md:text-5xl font-light text-gray-800 mb-6 tracking-widest"
                 >
                     LOCAL REVIEW
                 </motion.h2>
                 <motion.p 
                     variants={staggerChild}
-                    className="text-sm xl:text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed"
+                    className="font2 text-sm xl:text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed"
                 >
                     An enjoyable stroll from Sofitel Luang Prabang brings you to a fascinating display of Laos
                 </motion.p>
@@ -127,18 +128,14 @@ const LocalReview = () => {
                     transition={{ duration: 0.6, delay: 0.2 }}
                     className="image-swiper-button-prev absolute left-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-80 hover:bg-opacity-100 rounded-full p-3 transition-all duration-300 z-10"
                 >
-                    <svg className="w-6 h-6 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                    </svg>
+                    <ChevronLeft className="w-6 h-6 text-gray-800" />
                 </motion.button>
                 <motion.button 
                     {...animations.slideInRight}
                     transition={{ duration: 0.6, delay: 0.2 }}
                     className="image-swiper-button-next absolute right-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-80 hover:bg-opacity-100 rounded-full p-3 transition-all duration-300 z-10"
                 >
-                    <svg className="w-6 h-6 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
+                    <ChevronRight className="w-6 h-6 text-gray-800" />
                 </motion.button>
 
                 {/* Custom Pagination */}
@@ -154,7 +151,7 @@ const LocalReview = () => {
                 {...animations.fadeInUp}
                 className="text-center px-10 mb-16 max-w-4xl mx-auto"
             >
-                <p className="text-gray-700 leading-relaxed text-xs xl:text-lg">
+                <p className="font2 text-gray-700 leading-relaxed text-xs xl:text-lg">
                     simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make
                 </p>
             </motion.div>
@@ -203,7 +200,7 @@ const LocalReview = () => {
                                             <motion.p 
                                                 {...animations.fadeInUp}
                                                 transition={{ duration: 0.6, delay: index * 0.1 + 0.1 }}
-                                                className="text-gray-700 text-sm leading-relaxed mb-6"
+                                                className="font2 text-gray-700 text-sm leading-relaxed mb-6"
                                             >
                                                 "{review.text}"
                                             </motion.p>
@@ -223,10 +220,10 @@ const LocalReview = () => {
                                                     />
                                                 </div>
                                                 <div className="flex-1">
-                                                    <h4 className="font-medium text-gray-800 text-sm">
+                                                    <h4 className="font1 font-medium text-gray-800 text-sm">
                                                         {review.name}
                                                     </h4>
-                                                    <p className="text-gray-600 text-xs">
+                                                    <p className="font2 text-gray-600 text-xs">
                                                         {review.title}
                                                     </p>
                                                 </div>
@@ -262,14 +259,10 @@ const LocalReview = () => {
                             className="flex justify-end space-x-2"
                         >
                             <button className="review-swiper-button-prev p-2 border border-gray-300 rounded hover:bg-gray-100 transition-colors duration-300">
-                                <svg className="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                                </svg>
+                                <ChevronLeft className="w-5 h-5 text-gray-600" />
                             </button>
                             <button className="review-swiper-button-next p-2 border border-gray-300 rounded hover:bg-gray-100 transition-colors duration-300">
-                                <svg className="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                                </svg>
+                                <ChevronRight className="w-5 h-5 text-gray-600" />
                             </button>
                         </motion.div>
                     </div>

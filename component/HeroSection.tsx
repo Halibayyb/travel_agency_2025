@@ -1,19 +1,33 @@
 'use client';
 
+import { useEffect, useRef } from 'react';
+
 const HeroSection = () => {
+    const videoRef = useRef<HTMLVideoElement | null>(null);
+
+    useEffect(() => {
+        // Ensure video plays when component mounts
+        if (videoRef.current) {
+            videoRef.current.play().catch((error) => {
+                console.log('Video autoplay failed:', error);
+            });
+        }
+    }, []);
+
     return (
         <section id="home" className="relative min-h-screen">
             {/* Background Video with parallax effect */}
             <div className="absolute inset-0">
                 <video
+                    ref={videoRef}
                     className="w-full h-full object-cover"
                     autoPlay
                     muted
                     loop
                     playsInline
                 >
-                    {/* Fallback for browsers that don't support the video format */}
-                    <source src="video/lpb_video_2.mp4" type="video/mp4" />
+                    {/* Use absolute path to avoid relative path issues */}
+                    <source src="/video/lpb_video_2.mp4" type="video/mp4" />
                     Your browser does not support the video tag.
                 </video>
                 
@@ -24,7 +38,7 @@ const HeroSection = () => {
             {/* Hero Content */}
             <div className="relative z-10 flex items-center justify-center min-h-screen">
                 <div className="text-center px-6">
-                    <h1 className="text-4xl md:text-6xl lg:text-7xl fcolor2 mb-4 tracking-wider font-light">
+                    <h1 className="text-4xl md:text-6xl lg:text-7xl fcolor2 mb-4 tracking-wider font-bold font1">
                         TRAVEL AT LUANG PRABANG
                     </h1>
                 </div>

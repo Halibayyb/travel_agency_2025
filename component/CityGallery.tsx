@@ -92,7 +92,7 @@ const CitiesGallery = () => {
     };
 
     return (
-        <section className="min-h-screen bg-yellow-50 py-16 overflow-hidden">
+        <section id="gallery" className="min-h-screen bg-yellow-50 py-16 overflow-hidden">
             {/* Header Section */}
             <motion.div 
                 {...animations.fadeInUp}
@@ -107,19 +107,19 @@ const CitiesGallery = () => {
                 >
                     <motion.p 
                         variants={staggerChild}
-                        className="text-gray-500 text-sm mb-4"
+                        className="font2 text-gray-500 text-lg mb-4"
                     >
                         our gallery
                     </motion.p>
                     <motion.h1 
                         variants={staggerChild}
-                        className="text-3xl md:text-4xl font-bold text-gray-800 mb-2 tracking-wide"
+                        className="font1 text-3xl md:text-4xl font-bold text-gray-800 mb-2 tracking-wide"
                     >
                         RELAXATION AND LUXURY
                     </motion.h1>
                     <motion.h2 
                         variants={staggerChild}
-                        className="text-2xl md:text-3xl font-bold text-gray-800 tracking-wide"
+                        className="font1 text-2xl md:text-3xl font-bold text-gray-800 tracking-wide"
                     >
                         DURING YOUR STAY
                     </motion.h2>
@@ -195,7 +195,7 @@ const CitiesGallery = () => {
                                                 className="absolute bottom-6 left-6 text-white"
                                             >
                                                 <motion.h3 
-                                                    className={`font-bold mb-1 transition-all duration-300 ${
+                                                    className={`font1 font-bold mb-1 transition-all duration-300 ${
                                                         isMiddle ? "text-xl md:text-2xl lg:text-3xl" : "text-lg md:text-xl"
                                                     }`}
                                                     whileHover={{ x: 5 }}
@@ -204,7 +204,7 @@ const CitiesGallery = () => {
                                                     {item.title}
                                                 </motion.h3>
                                                 <motion.p 
-                                                    className={`opacity-90 transition-all duration-300 ${
+                                                    className={`font2 opacity-90 transition-all duration-300 ${
                                                         isMiddle ? "text-sm md:text-base lg:text-lg" : "text-xs md:text-sm"
                                                     }`}
                                                     whileHover={{ x: 3 }}
@@ -213,7 +213,7 @@ const CitiesGallery = () => {
                                                     {item.subtitle}
                                                 </motion.p>
                                                 <motion.p 
-                                                    className={`opacity-75 mt-1 transition-all duration-300 ${
+                                                    className={`font2 opacity-75 mt-1 transition-all duration-300 ${
                                                         isMiddle ? "text-xs md:text-sm" : "text-xs"
                                                     }`}
                                                     whileHover={{ x: 2 }}
@@ -226,7 +226,7 @@ const CitiesGallery = () => {
                                             {/* Explore Button Overlay - Only visible on hover and when active */}
                                             {isMiddle && (
                                                 <div className="absolute inset-0 bg-white/10 bg-opacity-0 hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center opacity-0 hover:opacity-100">
-                                                    <span className="bg-amber-800 text-white px-6 py-3 rounded-full text-sm font-medium ">
+                                                    <span className="font2 bg-amber-800 text-white px-6 py-3 rounded-full text-sm font-medium ">
                                                         Explore {item.location}
                                                     </span>
                                                 </div>
@@ -243,7 +243,7 @@ const CitiesGallery = () => {
                                         }`}
                                     >
                                         <motion.p 
-                                            className={`leading-relaxed mb-4 transition-all duration-300 ${
+                                            className={`font2 leading-relaxed mb-4 transition-all duration-300 ${
                                                 isMiddle ? "text-gray-600 text-sm md:text-base" : "text-transparent text-xs md:text-sm"
                                             }`}
                                             initial={{ opacity: 0, y: 10 }}

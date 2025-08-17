@@ -17,8 +17,9 @@ export default function Home() {
       
       {/* Hero section with background parallax */}
       <HeroSection />
-      <CitiesGallery />
       <AboutPage />
+
+      <CitiesGallery />
       
       <CityMaps />
       <TourPackages />

@@ -17,13 +17,13 @@ const LocationPage = () => {
             >
                 <motion.h1 
                     variants={staggerChild}
-                    className="text-2xl xl:text-5xl font-light text-gray-800 mb-6 tracking-widest"
+                    className="font1 text-2xl xl:text-5xl font-light text-gray-800 mb-6 tracking-widest"
                 >
                     LOCATION
                 </motion.h1>
                 <motion.p 
                     variants={staggerChild}
-                    className="text-base xl:text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed"
+                    className="font2 text-base xl:text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed"
                 >
                     An enjoyable stroll from Sofitel Luang Prabang brings you to a fascinating display of Laos
                 </motion.p>

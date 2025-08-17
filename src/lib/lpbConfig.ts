@@ -3,7 +3,40 @@
 // Import images (you'll add these)
 import lpbTemple from "@/public/assets/royal_palace_img.jpg"
 import lpbLocal from "@/public/assets/lpb_street.jpg"
-// Add more imports as needed for each destination
+import nkImg from "@/public/assets/nong_khiaw.jpg";
+import vvImg from "@/public/assets/vang_vieng.jpg";
+import vteImg from "@/public/assets/vientiane.jpg";
+
+// lpb images
+import lpb1 from "@/public/assets/lpb/lpbStreet1.webp"
+import lpb2 from "@/public/assets/lpb/lpbStreet2.jpg"
+import lpb3 from "@/public/assets/lpb/lpbStreet3.jpg"
+import lpb4 from "@/public/assets/lpb/lpbStreet4.jpg"
+import lpb5 from "@/public/assets/lpb/lpbStreet5.jpg"
+import lpb6 from "@/public/assets/lpb/lpbStreet6.jpg"
+
+// nk images
+import nk1 from "@/public/assets/nk/nk1.jpg"
+import nk2 from "@/public/assets/nk/nk2.jpg"
+import nk3 from "@/public/assets/nk/nk3.jpg"
+import nk4 from "@/public/assets/nk/nk4.jpg"
+
+// vv images
+import vv1 from "@/public/assets/vv/vv1.jpg"
+import vv2 from "@/public/assets/vv/vv2.jpg"
+import vv3 from "@/public/assets/vv/vv3.jpg"
+import vv4 from "@/public/assets/vv/vv4.jpg"
+import vv5 from "@/public/assets/vv/vv5.jpg"
+import vv6 from "@/public/assets/vv/vv6.jpg"
+import vv7 from "@/public/assets/vv/vv7.jpg"
+
+// vte images
+import vte1 from "@/public/assets/vte/vte1.jpg"
+import vte2 from "@/public/assets/vte/vte2.jpg"
+import vte3 from "@/public/assets/vte/vte3.jpg"
+import vte4 from "@/public/assets/vte/vte4.jpg"
+import vte5 from "@/public/assets/vte/vte5.jpg"
+import vte6 from "@/public/assets/vte/vte6.jpg"
 
 export interface ImageData {
     src: any;
@@ -34,21 +67,79 @@ export interface DestinationData {
 
 export const tabs: string[] = ['LUANG PRABANG', 'NONG KHIAW', 'VANG VIENG', 'VIENTIANE'];
 
-export const destinationImages = [
-    lpbTemple, // Main cruise boat image
-    lpbLocal, // Waterfall image
-    lpbTemple, // Monks image
-    lpbTemple, // Street scene
-    lpbTemple, // Additional image
-    lpbTemple  // Additional image
+// Updated image arrays with proper distribution
+export const luangPrabangImages = [
+    lpbTemple,
+    lpbLocal,
+    lpb1,
+    lpb2,
+    lpb3,
+    lpb4,
+    lpb5,
+    lpb6,
+    lpbTemple,
+    lpbLocal,
 ];
+
+export const nongKhiawImages = [
+    nkImg,
+    nk1,
+    nk2,
+    nk3,
+    nk4,
+    nkImg,
+    nk1,
+    nk2,
+    nk3,
+    nk4,
+];
+
+export const vangViengImages = [
+    vvImg,
+    vv1,
+    vv2,
+    vv3,
+    vv4,
+    vv5,
+    vv6,
+    vv7,
+    vvImg,
+    vv1,
+];
+
+export const vientianeImages = [
+    vteImg,
+    vte1,
+    vte2,
+    vte3,
+    vte4,
+    vte5,
+    vte6,
+    vteImg,
+    vte1,
+    vte2,
+];
+
+interface DestinationImagesMap {
+  [key: string]: any[];
+}
+
+// Create a map for easy access
+export const destinationImagesMap = {
+    'LUANG PRABANG': luangPrabangImages,
+    'NONG KHIAW': nongKhiawImages,
+    'VANG VIENG': vangViengImages,
+    'VIENTIANE': vientianeImages
+};
 
 export const destinationInfo = {
     title: "LUANG PRABANG",
     description: "Luang Prabang, the ancient capital of Luang Prabang Province in northern Laos, lies in a valley at the confluence of the Mekong and Nam Khan rivers. Inhabited for thousands of years, it was the royal capital of the country until 1975. It's known for its many Buddhist temples, including the gilded Wat Xieng Thong, dating to the 16th century, and Wat Mai, once the residence of the head of Laotian Buddhism."
 };
 
-// Luang Prabang Experiences
+export const destinationImages = luangPrabangImages;
+
+// Luang Prabang Experiences - Updated with proper LPB images
 export const luangPrabangExperiences: ExperienceData[] = [
     {
         id: 1,
@@ -62,11 +153,11 @@ export const luangPrabangExperiences: ExperienceData[] = [
             "Beautiful sunset cruise back to Luang Prabang"
         ],
         images: {
-            main: { src: lpbTemple, alt: "Mekong River Cruise" },
+            main: { src: lpb1, alt: "Mekong River Cruise" },
             secondary: [
                 { src: lpbTemple, alt: "Pak Ou Caves" },
                 { src: lpbLocal, alt: "Baci Ceremony" },
-                { src: lpbTemple, alt: "Rice Whiskey Tasting" }
+                { src: lpb2, alt: "Rice Whiskey Tasting" }
             ]
         }
     },
@@ -82,11 +173,11 @@ export const luangPrabangExperiences: ExperienceData[] = [
             "Perfect day of natural beauty and tranquility"
         ],
         images: {
-            main: { src: lpbTemple, alt: "Kuang Si Waterfall" },
+            main: { src: lpb3, alt: "Kuang Si Waterfall" },
             secondary: [
-                { src: lpbTemple, alt: "Lao Buffalo Dairy" },
-                { src: lpbTemple, alt: "Hmong Village" },
-                { src: lpbTemple, alt: "Swimming Pools" }
+                { src: lpb4, alt: "Lao Buffalo Dairy" },
+                { src: lpb5, alt: "Hmong Village" },
+                { src: lpb6, alt: "Swimming Pools" }
             ]
         }
     },
@@ -104,9 +195,9 @@ export const luangPrabangExperiences: ExperienceData[] = [
         images: {
             main: { src: lpbTemple, alt: "Morning Alms Giving" },
             secondary: [
-                { src: lpbTemple, alt: "Buddhist Monks" },
-                { src: lpbLocal, alt: "Dawn Buddhist Procession" },
-                { src: lpbTemple, alt: "Alms Offering" }
+                { src: lpbLocal, alt: "Buddhist Monks" },
+                { src: lpb1, alt: "Dawn Buddhist Procession" },
+                { src: lpb2, alt: "Alms Offering" }
             ]
         }
     },
@@ -124,9 +215,9 @@ export const luangPrabangExperiences: ExperienceData[] = [
         images: {
             main: { src: lpbTemple, alt: "Royal Palace Museum" },
             secondary: [
-                { src: lpbTemple, alt: "Mount Phousi Sunset" },
-                { src: lpbTemple, alt: "Night Market" },
-                { src: lpbTemple, alt: "Historic Temples" }
+                { src: lpb3, alt: "Mount Phousi Sunset" },
+                { src: lpbLocal, alt: "Night Market" },
+                { src: lpb4, alt: "Historic Temples" }
             ]
         }
     },
@@ -142,11 +233,11 @@ export const luangPrabangExperiences: ExperienceData[] = [
             "Master authentic Laotian culinary techniques"
         ],
         images: {
-            main: { src: lpbTemple, alt: "Bamboo Weaving" },
+            main: { src: lpb5, alt: "Bamboo Weaving" },
             secondary: [
-                { src: lpbTemple, alt: "Cooking Class" },
-                { src: lpbTemple, alt: "Local Market Visit" },
-                { src: lpbTemple, alt: "Traditional Crafts" }
+                { src: lpb6, alt: "Cooking Class" },
+                { src: lpbLocal, alt: "Local Market Visit" },
+                { src: lpb1, alt: "Traditional Crafts" }
             ]
         }
     },
@@ -162,17 +253,17 @@ export const luangPrabangExperiences: ExperienceData[] = [
             "Connection with rich cultural heritage along Mekong River"
         ],
         images: {
-            main: { src: lpbTemple, alt: "TAEC Museum" },
+            main: { src: lpb2, alt: "TAEC Museum" },
             secondary: [
-                { src: lpbTemple, alt: "Ock Pop Tok Textile Gallery" },
-                { src: lpbTemple, alt: "Traditional Lao Weaving" },
+                { src: lpb3, alt: "Ock Pop Tok Textile Gallery" },
+                { src: lpb4, alt: "Traditional Lao Weaving" },
                 { src: lpbTemple, alt: "Cultural Heritage" }
             ]
         }
     }
 ];
 
-// Nong Khiaw Experiences
+// Nong Khiaw Experiences - Updated with NK images
 export const nongKhiawExperiences: ExperienceData[] = [
     {
         id: 7,
@@ -186,11 +277,11 @@ export const nongKhiawExperiences: ExperienceData[] = [
             "Views of surrounding rice paddies and majestic mountains"
         ],
         images: {
-            main: { src: lpbTemple, alt: "Nong Khiaw Viewpoint" },
+            main: { src: nkImg, alt: "Nong Khiaw Viewpoint" },
             secondary: [
-                { src: lpbTemple, alt: "Nam Ou River Vista" },
-                { src: lpbTemple, alt: "Limestone Karsts" },
-                { src: lpbTemple, alt: "Rice Paddies View" }
+                { src: nk1, alt: "Nam Ou River Vista" },
+                { src: nk2, alt: "Limestone Karsts" },
+                { src: nk3, alt: "Rice Paddies View" }
             ]
         }
     },
@@ -206,17 +297,17 @@ export const nongKhiawExperiences: ExperienceData[] = [
             "Cultural authenticity experience"
         ],
         images: {
-            main: { src: lpbTemple, alt: "Local Village Exploration" },
+            main: { src: nk4, alt: "Local Village Exploration" },
             secondary: [
-                { src: lpbTemple, alt: "Village Daily Life" },
-                { src: lpbTemple, alt: "Traditional Customs" },
-                { src: lpbTemple, alt: "Local Inhabitants" }
+                { src: nk1, alt: "Village Daily Life" },
+                { src: nk2, alt: "Traditional Customs" },
+                { src: nk3, alt: "Local Inhabitants" }
             ]
         }
     }
 ];
 
-// Vang Vieng Experiences
+// Vang Vieng Experiences - Updated with VV images
 export const vangViengExperiences: ExperienceData[] = [
     {
         id: 9,
@@ -230,11 +321,11 @@ export const vangViengExperiences: ExperienceData[] = [
             "Winding Nam Song River from above"
         ],
         images: {
-            main: { src: lpbTemple, alt: "Hot Air Balloon Ride" },
+            main: { src: vvImg, alt: "Hot Air Balloon Ride" },
             secondary: [
-                { src: lpbTemple, alt: "Aerial Limestone Karsts" },
-                { src: lpbTemple, alt: "Rice Paddies from Above" },
-                { src: lpbTemple, alt: "Nam Song River View" }
+                { src: vv1, alt: "Aerial Limestone Karsts" },
+                { src: vv2, alt: "Rice Paddies from Above" },
+                { src: vv3, alt: "Nam Song River View" }
             ]
         }
     },
@@ -250,11 +341,11 @@ export const vangViengExperiences: ExperienceData[] = [
             "Mysterious limestone caves exploration"
         ],
         images: {
-            main: { src: lpbTemple, alt: "Blue Lagoon" },
+            main: { src: vv4, alt: "Blue Lagoon" },
             secondary: [
-                { src: lpbTemple, alt: "Zipline Adventure" },
-                { src: lpbTemple, alt: "Limestone Caves" },
-                { src: lpbTemple, alt: "Karst Landscape" }
+                { src: vv5, alt: "Zipline Adventure" },
+                { src: vv6, alt: "Limestone Caves" },
+                { src: vv7, alt: "Karst Landscape" }
             ]
         }
     },
@@ -270,17 +361,17 @@ export const vangViengExperiences: ExperienceData[] = [
             "Active exploration at your own pace"
         ],
         images: {
-            main: { src: lpbTemple, alt: "Tubing on Nam Song River" },
+            main: { src: vv1, alt: "Tubing on Nam Song River" },
             secondary: [
-                { src: lpbTemple, alt: "Kayaking Experience" },
-                { src: lpbTemple, alt: "River Scenery" },
-                { src: lpbTemple, alt: "Lush Fields View" }
+                { src: vv2, alt: "Kayaking Experience" },
+                { src: vv3, alt: "River Scenery" },
+                { src: vvImg, alt: "Lush Fields View" }
             ]
         }
     }
 ];
 
-// Vientiane Experiences
+// Vientiane Experiences - Updated with VTE images
 export const vientianeExperiences: ExperienceData[] = [
     {
         id: 12,
@@ -294,11 +385,11 @@ export const vientianeExperiences: ExperienceData[] = [
             "Sense of peace and historical grandeur"
         ],
         images: {
-            main: { src: lpbTemple, alt: "Pha That Luang" },
+            main: { src: vteImg, alt: "Pha That Luang" },
             secondary: [
-                { src: lpbTemple, alt: "Golden Stupa" },
-                { src: lpbTemple, alt: "National Monument" },
-                { src: lpbTemple, alt: "Buddhist Symbol" }
+                { src: vte1, alt: "Golden Stupa" },
+                { src: vte2, alt: "National Monument" },
+                { src: vte3, alt: "Buddhist Symbol" }
             ]
         }
     },
@@ -314,11 +405,11 @@ export const vientianeExperiences: ExperienceData[] = [
             "Stunning views of the laid-back capital"
         ],
         images: {
-            main: { src: lpbTemple, alt: "Patuxai Victory Monument" },
+            main: { src: vte4, alt: "Patuxai Victory Monument" },
             secondary: [
-                { src: lpbTemple, alt: "Arc de Triomphe Style" },
-                { src: lpbTemple, alt: "Panoramic City View" },
-                { src: lpbTemple, alt: "Colonial Architecture" }
+                { src: vte5, alt: "Arc de Triomphe Style" },
+                { src: vte6, alt: "Panoramic City View" },
+                { src: vte1, alt: "Colonial Architecture" }
             ]
         }
     },
@@ -334,11 +425,11 @@ export const vientianeExperiences: ExperienceData[] = [
             "Place of continuous worship and reflection"
         ],
         images: {
-            main: { src: lpbTemple, alt: "Wat Sisaket Temple" },
+            main: { src: vte2, alt: "Wat Sisaket Temple" },
             secondary: [
-                { src: lpbTemple, alt: "Buddha Images Collection" },
-                { src: lpbTemple, alt: "Cloister Walls" },
-                { src: lpbTemple, alt: "Ancient Temple Architecture" }
+                { src: vte3, alt: "Buddha Images Collection" },
+                { src: vte4, alt: "Cloister Walls" },
+                { src: vte5, alt: "Ancient Temple Architecture" }
             ]
         }
     },
@@ -354,11 +445,11 @@ export const vientianeExperiences: ExperienceData[] = [
             "Quiet space for reflection on Laos's cultural past"
         ],
         images: {
-            main: { src: lpbTemple, alt: "Haw Phra Kaew Museum" },
+            main: { src: vte6, alt: "Haw Phra Kaew Museum" },
             secondary: [
-                { src: lpbTemple, alt: "Sacred Artifacts" },
-                { src: lpbTemple, alt: "Royal Temple Architecture" },
-                { src: lpbTemple, alt: "Buddhist Art Collection" }
+                { src: vte1, alt: "Sacred Artifacts" },
+                { src: vte2, alt: "Royal Temple Architecture" },
+                { src: vte3, alt: "Buddhist Art Collection" }
             ]
         }
     },
@@ -374,11 +465,11 @@ export const vientianeExperiences: ExperienceData[] = [
             "Both spiritual significance and unique visual spectacle"
         ],
         images: {
-            main: { src: lpbTemple, alt: "Buddha Park Sculptures" },
+            main: { src: vte4, alt: "Buddha Park Sculptures" },
             secondary: [
-                { src: lpbTemple, alt: "Hindu Statues" },
-                { src: lpbTemple, alt: "Buddhist Statues" },
-                { src: lpbTemple, alt: "Sculpture Garden" }
+                { src: vte5, alt: "Hindu Statues" },
+                { src: vte6, alt: "Buddhist Statues" },
+                { src: vteImg, alt: "Sculpture Garden" }
             ]
         }
     }
@@ -395,7 +486,6 @@ export const destinations: DestinationData[] = [
             description: "An enjoyable stroll from Sofitel Luang Prabang brings you to a fascinating display of Laos",
             mapSrc: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d30015.357457926297!2d102.12504522631893!3d19.88561311552375!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x312f2a3f413d1ba3%3A0xac9749a9608e6a56!2sLuang%20Prabang!5e0!3m2!1sen!2sla!4v1755346839811!5m2!1sen!2sla"
         }
-
     },
     {
         id: 'nong-khiaw',
@@ -416,7 +506,6 @@ export const destinations: DestinationData[] = [
             description: "Experience the adventure capital with stunning karst landscapes along Nam Song River",
             mapSrc: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d30189.648441840614!2d102.42706042509646!3d18.94440071290983!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3125ec34f03be713%3A0x1b35acb9d4d3e238!2sVang%20Vieng!5e0!3m2!1sen!2sla!4v1755346994733!5m2!1sen!2sla"
         }
-
     },
     {
         id: 'vientiane',
@@ -427,8 +516,6 @@ export const destinations: DestinationData[] = [
             description: "Explore the charming capital where French colonial meets traditional Lao culture",
             mapSrc: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d121452.59082239568!2d102.52336474944914!3d17.960422219079728!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3124688606ed7b21%3A0x1f93b18618c1eedf!2sVientiane!5e0!3m2!1sen!2sla!4v1755347043056!5m2!1sen!2sla"
         }
-
-
     }
 ];
 
