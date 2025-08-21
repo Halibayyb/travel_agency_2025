@@ -27,7 +27,7 @@ const HeroSection = () => {
                     playsInline
                 >
                     {/* Use absolute path to avoid relative path issues */}
-                    <source src="/video/lpb_video_3.mp4" type="video/mp4" />
+                    <source src="assets/video/lpb_video_3.mp4" type="video/mp4" />
                     Your browser does not support the video tag.
                 </video>
                 
