@@ -53,6 +53,14 @@ const DESTINATION_MAP: { [key: string]: string } = {
   vientiane: "VIENTIANE",
 };
 
+// Add this function to generate static params for all destinations
+export async function generateStaticParams() {
+  // Return all the dynamic route parameters that should be pre-generated
+  return Object.keys(DESTINATION_MAP).map((slug) => ({
+    id: slug,
+  }));
+}
+
 export default function DestinationPage() {
   const params = useParams();
   const destinationSlug = params.id as string;
