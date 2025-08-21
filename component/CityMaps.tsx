@@ -16,7 +16,6 @@ import nkImg from "@/public/assets/nong_khiaw.jpg";
 import vvImg from "@/public/assets/vang_vieng.jpg";
 import vteImg from "@/public/assets/vientiane.jpg";
 
-
 const mapLocations = [
   {
     id: 1,
@@ -61,72 +60,95 @@ const mapLocations = [
 ];
 
 const CityMaps = () => {
-  // Simple animation variants
+  // Slower, more gentle animation variants for polaroids
   const fadeInUp = {
-    initial: { opacity: 0, y: 30 },
-    animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.8, ease: "easeOut" }
+    initial: { opacity: 0 },
+    animate: { opacity: 1 },
+    transition: { 
+      duration: 3.2, // Increased from 1.8
+      type: "tween",
+      ease: "easeOut"
+    },
   };
 
   const slideInLeft = {
-    initial: { opacity: 0, x: -40 },
+    initial: { opacity: 0, x: -15 },
     animate: { opacity: 1, x: 0 },
-    transition: { duration: 0.8, ease: "easeOut" }
+    transition: { 
+      duration: 2.8, // Increased from 1.6
+      type: "tween", 
+      ease: "easeOut"
+    },
   };
 
   const slideInRight = {
-    initial: { opacity: 0, x: 40 },
+    initial: { opacity: 0, x: 15 },
     animate: { opacity: 1, x: 0 },
-    transition: { duration: 0.8, ease: "easeOut" }
+    transition: { 
+      duration: 2.8, // Increased from 1.6
+      type: "tween",
+      ease: "easeOut"
+    },
   };
 
   const staggerContainer = {
     animate: {
       transition: {
-        staggerChildren: 0.3
-      }
-    }
+        staggerChildren: 0.4, // Increased from 0.2 for slower stagger
+      },
+    },
+  };
+
+  // Gentle hover animations
+  const gentleHover = {
+    scale: 1.02
+  };
+
+  const subtleRotateHover = {
+    rotate: 0,
+    scale: 1.02
   };
 
   return (
-    <section id="city" className="min-h-screen py-8 md:py-16 relative overflow-hidden">
+    <section
+      id="city"
+      className="min-h-screen py-8 md:py-16 relative overflow-hidden"
+    >
       {/* Background Map */}
       <div className="absolute inset-0 bg-white">
-  <Image
-    src={mapBackground}
-    alt="Luang Prabang Map"
-    fill
-    priority
-    className="absolute inset-0 object-cover"  // ← Changed to absolute
-  />
-  <div className="absolute inset-0 "></div>  
-</div>
+        <Image
+          src={mapBackground}
+          alt="Luang Prabang Map"
+          fill
+          priority
+          className="absolute inset-0 object-cover"
+        />
+        <div className="absolute inset-0 "></div>
+      </div>
 
       {/* Header */}
-      <motion.div 
+      <motion.div
         className="text-center mb-8 md:mb-16 relative z-10 px-4"
-        initial="initial"
-        animate="animate"
-        variants={fadeInUp}
+
       >
-        <motion.p 
-                                variants={staggerContainer}
-                                className="font2 text-gray-500 text-lg mb-4"
-                            >
-                                our cities
-                            </motion.p>
-        <motion.h1 
-                                variants={staggerContainer}
-                                className="font1 text-3xl md:text-4xl font-bold text-gray-800 mb-2 tracking-wide"
-                            >
-                                FULL OF AMBITION
-                            </motion.h1>
+        <motion.p
+          className="font2 text-gray-500 text-lg mb-4"
+
+        >
+          our cities
+        </motion.p>
+        <motion.h1
+          className="font1 text-3xl md:text-4xl font-bold text-gray-800 mb-2 tracking-wide"
+
+        >
+          FULL OF AMBITION
+        </motion.h1>
       </motion.div>
 
       {/* Timeline Container */}
       <div className="relative max-w-6xl mx-auto px-4 md:px-6 z-10">
-        {/* Mobile Timeline - Centered with vertical line */}
-        <motion.div 
+        {/* Mobile Timeline */}
+        <motion.div
           className="block md:hidden relative"
           initial="initial"
           whileInView="animate"
@@ -134,64 +156,76 @@ const CityMaps = () => {
           variants={staggerContainer}
         >
           {/* Mobile vertical line */}
-          <motion.div 
+          <motion.div
             className="absolute left-1/2 top-0 bottom-0 w-px bg-[#8C614F] transform -translate-x-1/2"
-            initial={{ scaleY: 0 }}
-            whileInView={{ scaleY: 1 }}
-            transition={{ duration: 1.2, ease: "easeOut" }}
-                viewport={{ once: false, amount: 0.3 }}
-
+            initial={{ scaleY: 0, opacity: 0 }}
+            whileInView={{ scaleY: 1, opacity: 1 }}
+            transition={{ duration: 2.5, type: "tween", ease: "easeOut" }}
+            viewport={{ once: false, amount: 0.3 }}
           ></motion.div>
 
           <div className="space-y-12">
             {mapLocations.map((location, index) => (
-              <motion.div 
-                key={location.id} 
+              <motion.div
+                key={location.id}
                 className="relative"
                 variants={fadeInUp}
                 custom={index}
               >
                 {/* Mobile Central dot */}
-                <motion.div 
-                  className="absolute left-1/2 w-3 h-3 bg-[#8C614F] rounded-full transform -translate-x-1/2 z-10"
-                  initial={{ scale: 0 }}
-                  whileInView={{ scale: 1 }}
+                <motion.div
+                  className="absolute left-1/2 w-3 h-3 bg-[#8C614F] transform -translate-x-1/2 z-10"
+                  initial={{ scale: 0, opacity: 0 }}
+                  whileInView={{ scale: 1, opacity: 1 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.2 }}
+                  transition={{ 
+                    duration: 2.4, // Increased from 1.2
+                    delay: index * 0.6, // Increased from 0.3
+                    type: "tween",
+                    ease: "easeOut"
+                  }}
                 ></motion.div>
 
-                {/* Mobile Polaroid - Alternating sides with text on opposite side */}
+                {/* Mobile Polaroid */}
                 <div className="flex">
                   {location.side === "left" ? (
                     <>
-                      {/* Left side: Text on left, Polaroid on right */}
-                      <motion.div 
+                      <motion.div
                         className="w-1/2 pr-4 flex justify-end items-start"
-                        variants={slideInLeft}
+                        variants={fadeInUp}
                       >
-                        {/* Description text on left side */}
                         <div className="w-32 text-right">
                           <p className="font2 text-sm text-gray-600 leading-relaxed whitespace-pre-line">
                             {location.description}
                           </p>
                         </div>
                       </motion.div>
-                      <motion.div 
+                      <motion.div
                         className="w-1/2 pl-4"
-                        variants={slideInRight}
+                        variants={fadeInUp}
                       >
-                        {/* Polaroid on right side */}
-                        <Link 
+                        <Link
                           href={`/destinations/${location.destination}`}
                           className="inline-block"
                         >
-                          <motion.div 
-                            className="cursor-pointer transform -rotate-8 hover:rotate-0 transition-all duration-300 hover:scale-105"
-                            whileHover={{ rotate: 0, scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                            transition={{ duration: 0.3 }}
+                          <motion.div
+                            className="cursor-pointer transform -rotate-8"
+                            whileHover={subtleRotateHover}
+                            whileTap={{ scale: 0.98 }}
+                            transition={{ duration: 1.2, type: "tween", ease: "easeOut" }} // Increased from 0.8
+                            initial={{ opacity: 0 }}
+                            whileInView={{ opacity: 1 }}
+                            viewport={{ once: true }}
+                            animate={{ 
+                              transition: { 
+                                duration: 3.5, // Slower polaroid fade
+                                delay: index * 0.7,
+                                type: "tween", 
+                                ease: "easeOut" 
+                              }
+                            }}
                           >
-                            <div className="relative w-40 h-48 bg-orange-50 shadow-xl p-3 pb-8 rounded-sm hover:shadow-2xl transition-shadow duration-300">
+                            <div className="relative w-40 h-48 bg-orange-50 shadow-xl p-3 pb-8 rounded-sm hover:shadow-2xl transition-shadow duration-500">
                               {/* Photo area */}
                               <div className="relative w-full h-28 bg-gray-100 overflow-hidden border border-gray-200 shadow-inner">
                                 <Image
@@ -219,15 +253,15 @@ const CityMaps = () => {
                               <div className="absolute top-8 left-5 w-1 h-1 rounded-full bg-amber-100 opacity-40"></div>
                               <div className="absolute bottom-10 right-2 w-1 h-1 rounded-full bg-gray-300 opacity-50"></div>
 
-                              {/* Additional aging effects for left cards */}
+                              {/* Additional aging effects */}
                               <div className="absolute bottom-0 left-0 w-4 h-4 bg-gray-100 transform rotate-45 -translate-y-1 -translate-x-1 opacity-80"></div>
                               <div className="absolute top-6 right-3 w-6 h-3 rounded-full bg-yellow-100 opacity-20 transform rotate-45"></div>
                               <div className="absolute bottom-16 left-6 w-1 h-3 bg-gray-200 opacity-40"></div>
                               <div className="absolute bottom-8 right-3 w-12 h-px bg-gray-200 opacity-40 transform -rotate-12"></div>
 
                               {/* Hover overlay */}
-                              <div className="absolute inset-0 bg-black/20 bg-opacity-0 hover:bg-opacity-10 transition-all duration-300 flex items-center justify-center opacity-0 hover:opacity-100 rounded-sm">
-                                <span className="font2 bg-amber-800 text-white px-3 py-1 rounded-full text-xs font-medium">
+                              <div className="absolute inset-0 bg-black/10 bg-opacity-0 hover:bg-opacity-100 transition-all duration-500 flex items-center justify-center opacity-0 hover:opacity-100 rounded-sm">
+                                <span className="font2 bg-white/30 text-white px-3 py-1 text-xs font-medium">
                                   Explore
                                 </span>
                               </div>
@@ -238,23 +272,29 @@ const CityMaps = () => {
                     </>
                   ) : (
                     <>
-                      {/* Right side: Polaroid on left, text on right */}
-                      <motion.div 
-                        className="w-1/2 pr-4"
-                        variants={slideInLeft}
-                      >
-                        {/* Polaroid on left side */}
-                        <Link 
+                      <motion.div className="w-1/2 pr-4" variants={fadeInUp}>
+                        <Link
                           href={`/destinations/${location.destination}`}
                           className="inline-block float-right"
                         >
-                          <motion.div 
-                            className="cursor-pointer transform rotate-5 hover:rotate-0 transition-all duration-300 hover:scale-105"
-                            whileHover={{ rotate: 0, scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                            transition={{ duration: 0.3 }}
+                          <motion.div
+                            className="cursor-pointer transform rotate-5"
+                            whileHover={subtleRotateHover}
+                            whileTap={{ scale: 0.98 }}
+                            transition={{ duration: 1.2, type: "tween", ease: "easeOut" }} // Increased from 0.8
+                            initial={{ opacity: 0 }}
+                            whileInView={{ opacity: 1 }}
+                            viewport={{ once: true }}
+                            animate={{ 
+                              transition: { 
+                                duration: 3.5, // Slower polaroid fade
+                                delay: index * 0.7,
+                                type: "tween", 
+                                ease: "easeOut" 
+                              }
+                            }}
                           >
-                            <div className="relative w-40 h-48 bg-yellow-50 shadow-xl p-3 pb-8 rounded-sm hover:shadow-2xl transition-shadow duration-300">
+                            <div className="relative w-40 h-48 bg-yellow-50 shadow-xl p-3 pb-8 rounded-sm hover:shadow-2xl transition-shadow duration-500">
                               {/* Photo area */}
                               <div className="relative w-full h-28 bg-gray-100 overflow-hidden border border-gray-200 shadow-inner">
                                 <Image
@@ -287,8 +327,8 @@ const CityMaps = () => {
                               <div className="absolute top-4 left-2 w-16 h-px bg-gray-200 opacity-30 transform rotate-12"></div>
 
                               {/* Hover overlay */}
-                              <div className="absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-10 transition-all duration-300 flex items-center justify-center opacity-0 hover:opacity-100 rounded-sm">
-                                <span className="font2 bg-amber-800 text-white px-3 py-1 rounded-full text-xs font-medium">
+                              <div className="absolute inset-0 bg-black/10 bg-opacity-0 hover:bg-opacity-100 transition-all duration-500 flex items-center justify-center opacity-0 hover:opacity-100 rounded-sm">
+                                <span className="font2  bg-white/30 text-white px-3 py-1  text-xs font-medium">
                                   Explore
                                 </span>
                               </div>
@@ -296,11 +336,10 @@ const CityMaps = () => {
                           </motion.div>
                         </Link>
                       </motion.div>
-                      <motion.div 
+                      <motion.div
                         className="w-1/2 pl-4 flex justify-start items-start"
-                        variants={slideInRight}
+                        variants={fadeInUp}
                       >
-                        {/* Description text on right side */}
                         <div className="w-32 text-left">
                           <p className="font2 text-sm text-gray-600 leading-relaxed whitespace-pre-line">
                             {location.description}
@@ -315,8 +354,8 @@ const CityMaps = () => {
           </div>
         </motion.div>
 
-        {/* Desktop Timeline - Original layout but with better spacing */}
-        <motion.div 
+        {/* Desktop Timeline */}
+        <motion.div
           className="hidden md:block"
           initial="initial"
           whileInView="animate"
@@ -324,31 +363,35 @@ const CityMaps = () => {
           variants={staggerContainer}
         >
           {/* Central vertical line */}
-          <motion.div 
+          <motion.div
             className="absolute left-1/2 top-0 bottom-0 w-px bg-[#8C614F] transform -translate-x-1/2"
-            initial={{ scaleY: 0 }}
-            whileInView={{ scaleY: 1 }}
-            transition={{ duration: 1.5, ease: "easeOut" }}
-                viewport={{ once: false, amount: 0.3 }}
-
+            initial={{ scaleY: 0, opacity: 0 }}
+            whileInView={{ scaleY: 1, opacity: 1 }}
+            transition={{ duration: 3, type: "tween", ease: "easeOut" }}
+            viewport={{ once: false, amount: 0.3 }}
           ></motion.div>
 
           {/* Timeline items */}
           <div className="space-y-16 lg:space-y-20">
             {mapLocations.map((location, index) => (
-              <motion.div 
-                key={location.id} 
+              <motion.div
+                key={location.id}
                 className="relative"
                 variants={fadeInUp}
                 custom={index}
               >
                 {/* Central dot */}
-                <motion.div 
+                <motion.div
                   className="absolute left-1/2 w-3 h-3 bg-[#8C614F] rounded-full transform -translate-x-1/2 z-10"
-                  initial={{ scale: 0 }}
-                  whileInView={{ scale: 1 }}
+                  initial={{ scale: 0, opacity: 0 }}
+                  whileInView={{ scale: 1, opacity: 1 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.3 }}
+                  transition={{ 
+                    duration: 2.8, // Increased from 1.5
+                    delay: index * 0.8, // Increased from 0.4
+                    type: "tween",
+                    ease: "easeOut"
+                  }}
                 ></motion.div>
 
                 {location.side === "right" ? (
@@ -358,22 +401,33 @@ const CityMaps = () => {
                       {/* Empty space on left */}
                     </div>
 
-                    <motion.div 
+                    <motion.div
                       className="w-1/2 pl-8 lg:pl-16"
-                      variants={slideInRight}
+                      variants={fadeInUp}
                     >
                       {/* Polaroid on right side */}
-                      <Link 
+                      <Link
                         href={`/destinations/${location.destination}`}
                         className="inline-block"
                       >
-                        <motion.div 
-                          className="cursor-pointer transform rotate-3 hover:rotate-0 transition-all duration-300 hover:scale-105 mb-6"
-                          whileHover={{ rotate: 0, scale: 1.05 }}
-                          whileTap={{ scale: 0.95 }}
-                          transition={{ duration: 0.3 }}
+                        <motion.div
+                          className="cursor-pointer transform rotate-3 mb-6"
+                          whileHover={subtleRotateHover}
+                          whileTap={{ scale: 0.98 }}
+                          transition={{ duration: 1.2, type: "tween", ease: "easeOut" }} // Increased from 0.8
+                          initial={{ opacity: 0 }}
+                          whileInView={{ opacity: 1 }}
+                          viewport={{ once: true }}
+                          animate={{ 
+                            transition: { 
+                              duration: 4.0, // Slower polaroid fade for desktop
+                              delay: index * 0.8,
+                              type: "tween", 
+                              ease: "easeOut" 
+                            }
+                          }}
                         >
-                          <div className="relative w-44 lg:w-52 h-52 lg:h-60 bg-yellow-50 shadow-2xl p-3 lg:p-4 pb-8 lg:pb-10 rounded-sm hover:shadow-3xl transition-shadow duration-300">
+                          <div className="relative w-44 lg:w-52 h-52 lg:h-60 bg-yellow-50 shadow-2xl p-3 lg:p-4 pb-8 lg:pb-10 rounded-sm hover:shadow-3xl transition-shadow duration-600">
                             {/* Photo area */}
                             <div className="relative w-full h-32 lg:h-36 bg-gray-100 overflow-hidden border border-gray-200 shadow-inner">
                               <Image
@@ -400,8 +454,8 @@ const CityMaps = () => {
                             <div className="absolute top-10 lg:top-12 left-6 lg:left-8 w-1 lg:w-2 h-1 lg:h-2 rounded-full bg-amber-100 opacity-40"></div>
 
                             {/* Hover overlay */}
-                            <div className="absolute inset-0 bg-black/20 bg-opacity-0 hover:bg-opacity-10 transition-all duration-300 flex items-center justify-center opacity-0 hover:opacity-100 rounded-sm">
-                              <span className="font2 bg-amber-800 text-white px-4 py-2 rounded-full text-sm font-medium">
+                            <div className="absolute inset-0 bg-black/10 bg-opacity-0 hover:bg-opacity-100 transition-all duration-600 flex items-center justify-center opacity-0 hover:opacity-100 rounded-sm">
+                              <span className="font2  bg-white/30 text-white px-4 py-2  text-sm font-medium">
                                 Explore
                               </span>
                             </div>
@@ -410,12 +464,12 @@ const CityMaps = () => {
                       </Link>
 
                       {/* Content below polaroid */}
-                      <motion.div 
+                      <motion.div
                         className="max-w-xs"
                         initial={{ opacity: 0 }}
                         whileInView={{ opacity: 1 }}
                         viewport={{ once: true }}
-                        transition={{ duration: 0.8, delay: 0.2 }}
+                        transition={{ duration: 2.5, delay: 0.6, type: "tween", ease: "easeOut" }} // Increased from 1.5/0.3
                       >
                         <p className="font2 text-xs lg:text-sm text-gray-600 leading-relaxed whitespace-pre-line">
                           {location.description}
@@ -426,23 +480,33 @@ const CityMaps = () => {
                 ) : (
                   // Left side layout
                   <div className="flex">
-                    <motion.div 
+                    <motion.div
                       className="w-1/2 pr-8 lg:pr-16"
-                      variants={slideInLeft}
+                      variants={fadeInUp}
                     >
                       {/* Polaroid on left side */}
-                      <Link 
-                        href={`/destinations/${location.destination} `}
-                        
+                      <Link
+                        href={`/destinations/${location.destination}`}
                         className="inline-block float-right"
                       >
-                        <motion.div 
-                          className="cursor-pointer transform -rotate-2 hover:rotate-0 transition-all duration-300 hover:scale-105 mb-6"
-                          whileHover={{ rotate: 0, scale: 1.05 }}
-                          whileTap={{ scale: 0.95 }}
-                          transition={{ duration: 0.3 }}
+                        <motion.div
+                          className="cursor-pointer transform -rotate-2 mb-6"
+                          whileHover={subtleRotateHover}
+                          whileTap={{ scale: 0.98 }}
+                          transition={{ duration: 1.2, type: "tween", ease: "easeOut" }} // Increased from 0.8
+                          initial={{ opacity: 0 }}
+                          whileInView={{ opacity: 1 }}
+                          viewport={{ once: true }}
+                          animate={{ 
+                            transition: { 
+                              duration: 4.0, // Slower polaroid fade for desktop
+                              delay: index * 0.8,
+                              type: "tween", 
+                              ease: "easeOut" 
+                            }
+                          }}
                         >
-                          <div className="relative w-40 lg:w-48 h-48 lg:h-56 bg-orange-50 shadow-xl p-3 lg:p-5 pb-7 lg:pb-9 rounded-sm hover:shadow-2xl transition-shadow duration-300">
+                          <div className="relative w-40 lg:w-48 h-48 lg:h-56 bg-orange-50 shadow-xl p-3 lg:p-5 pb-7 lg:pb-9 rounded-sm hover:shadow-2xl transition-shadow duration-600">
                             {/* Photo area */}
                             <div className="relative w-full h-32 lg:h-36 bg-gray-50 overflow-hidden border border-gray-300 shadow-inner">
                               <Image
@@ -469,8 +533,8 @@ const CityMaps = () => {
                             <div className="absolute top-16 lg:top-20 right-6 lg:right-8 w-3 lg:w-4 h-1 lg:h-2 rounded-full bg-yellow-50 opacity-70"></div>
 
                             {/* Hover overlay */}
-                            <div className="absolute inset-0 bg-black/20 bg-opacity-0 hover:bg-opacity-10 transition-all duration-300 flex items-center justify-center opacity-0 hover:opacity-100 rounded-sm">
-                              <span className="font2 bg-amber-800 text-white px-4 py-2 rounded-full text-sm font-medium">
+                            <div className="absolute inset-0 bg-black/10 bg-opacity-0 hover:bg-opacity-100 transition-all duration-600 flex items-center justify-center opacity-0 hover:opacity-100 rounded-sm">
+                              <span className="font2  bg-white/30 text-white px-4 py-2 text-sm font-medium">
                                 Explore
                               </span>
                             </div>
@@ -479,12 +543,12 @@ const CityMaps = () => {
                       </Link>
 
                       {/* Content below polaroid */}
-                      <motion.div 
+                      <motion.div
                         className="max-w-xs float-right text-right clear-right"
                         initial={{ opacity: 0 }}
                         whileInView={{ opacity: 1 }}
                         viewport={{ once: true }}
-                        transition={{ duration: 0.8, delay: 0.2 }}
+                        transition={{ duration: 2.5, delay: 0.6, type: "tween", ease: "easeOut" }} // Increased from 1.5/0.3
                       >
                         <p className="font2 text-xs lg:text-sm text-gray-600 leading-relaxed whitespace-pre-line">
                           {location.description}

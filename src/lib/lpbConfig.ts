@@ -3,7 +3,7 @@
 // Import images (you'll add these)
 import lpbTemple from "@/public/assets/royal_palace_img.jpg"
 import lpbLocal from "@/public/assets/lpb_street.jpg"
-import nkImg from "@/public/assets/nong_khiaw.jpg";
+import nkImg from "@/public/assets/nong_khiaw_river.jpg";
 import vvImg from "@/public/assets/vang_vieng.jpg";
 import vteImg from "@/public/assets/vientiane.jpg";
 

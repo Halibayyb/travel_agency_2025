@@ -201,7 +201,7 @@ const ContactUs = () => {
                             <div className="flex justify-end pt-8">
                                 <button
                                     type="submit"
-                                    className="bg-amber-800 hover:bg-amber-900 text-white px-12 py-4 tracking-widest text-sm font-light transition-colors duration-300 font2"
+                                    className="bg-[#52392F] hover:bg-[#4A322A] text-white px-12 py-4 tracking-widest text-sm font-light transition-colors duration-300 font2"
                                 >
                                     Submit
                                 </button>

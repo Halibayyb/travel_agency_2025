@@ -27,19 +27,19 @@ const HeroSection = () => {
                     playsInline
                 >
                     {/* Use absolute path to avoid relative path issues */}
-                    <source src="/video/lpb_video_2.mp4" type="video/mp4" />
+                    <source src="/video/lpb_video_3.mp4" type="video/mp4" />
                     Your browser does not support the video tag.
                 </video>
                 
                 {/* Overlay for better text readability */}
-                <div className="absolute inset-0 bg-black/30"></div>
+                <div className="absolute inset-0 bg-black/20"></div>
             </div>
 
             {/* Hero Content */}
             <div className="relative z-10 flex items-center justify-center min-h-screen">
                 <div className="text-center px-6">
                     <h1 className="text-4xl md:text-6xl lg:text-7xl fcolor2 mb-4 tracking-wider font-bold font1">
-                        TRAVEL AT LUANG PRABANG
+                        Discover Your Journey to Laos
                     </h1>
                 </div>
             </div>

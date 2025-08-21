@@ -7,6 +7,8 @@ import { MapPin, Building2, Mountain, Leaf, Star, Clock, Users, Camera, Phone, M
 import { countries } from "countries-list";
 import { packageData, additionalPackages, Package } from "@/src/lib/tourPackageData";
 
+// Import animation
+import { animations, stagger } from '@/src/lib/animations';
 
 // import image
 import lpb_bg from "@/public/assets/lpb_view.jpg";
@@ -30,16 +32,6 @@ interface CountryOption {
     code: string;
     name: string;
 }
-
-// Import animations
-const animations = {
-    fadeInUp: {
-        initial: { opacity: 0, y: 30 },
-        animate: { opacity: 1, y: 0 },
-        transition: { duration: 0.6 }
-    }
-};
-
 
 // Contact Form Component
 const ContactForm: React.FC<ContactFormProps> = ({ isOpen, onClose, selectedPackage }) => {
@@ -119,7 +111,6 @@ const ContactForm: React.FC<ContactFormProps> = ({ isOpen, onClose, selectedPack
                 </div>
 
                 <div className="px-8">
-
                     <div className="space-y-8">
                         {/* Name */}
                         <div>
@@ -131,7 +122,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ isOpen, onClose, selectedPack
                                 name="name"
                                 value={formData.name}
                                 onChange={handleInputChange}
-                                className="w-full border-0 border-b-2 border-gray-300 bg-transparent py-3 px-0 text-gray-800 placeholder-gray-500 focus:outline-none focus:border-amber-600 transition-colors duration-300 font2"
+                                className="w-full border-0 border-b-2 border-gray-300 bg-transparent py-3 px-0 text-gray-800 placeholder-gray-500 focus:outline-none focus:border-[#52392F] transition-colors duration-300 font2"
                                 placeholder=""
                                 required
                             />
@@ -143,7 +134,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ isOpen, onClose, selectedPack
                                 Country
                             </label>
                             <div 
-                                className="w-full border-0 border-b-2 border-gray-300 bg-transparent py-3 px-0 text-gray-800 cursor-pointer focus-within:border-amber-600 transition-colors duration-300 flex items-center justify-between font2"
+                                className="w-full border-0 border-b-2 border-gray-300 bg-transparent py-3 px-0 text-gray-800 cursor-pointer focus-within:border-[#52392F] transition-colors duration-300 flex items-center justify-between font2"
                                 onClick={() => setIsCountryOpen(!isCountryOpen)}
                             >
                                 <span className={formData.country ? "text-gray-800" : "text-gray-500"}>
@@ -177,7 +168,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ isOpen, onClose, selectedPack
                                 name="email"
                                 value={formData.email}
                                 onChange={handleInputChange}
-                                className="w-full border-0 border-b-2 border-gray-300 bg-transparent py-3 px-0 text-gray-800 placeholder-gray-500 focus:outline-none focus:border-amber-600 transition-colors duration-300 font2"
+                                className="w-full border-0 border-b-2 border-gray-300 bg-transparent py-3 px-0 text-gray-800 placeholder-gray-500 focus:outline-none focus:border-[#52392F] transition-colors duration-300 font2"
                                 placeholder=""
                                 required
                             />
@@ -193,7 +184,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ isOpen, onClose, selectedPack
                                 name="packageInterest"
                                 value={formData.packageInterest}
                                 onChange={handleInputChange}
-                                className="w-full border-0 border-b-2 border-gray-300 bg-transparent py-3 px-0 text-gray-800 placeholder-gray-500 focus:outline-none focus:border-amber-600 transition-colors duration-300 font2"
+                                className="w-full border-0 border-b-2 border-gray-300 bg-transparent py-3 px-0 text-gray-800 placeholder-gray-500 focus:outline-none focus:border-[#52392F] transition-colors duration-300 font2"
                                 placeholder=""
                                 readOnly
                             />
@@ -209,7 +200,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ isOpen, onClose, selectedPack
                                 value={formData.message}
                                 onChange={handleInputChange}
                                 rows={3}
-                                className="w-full border-0 border-b-2 border-gray-300 bg-transparent py-3 px-0 text-gray-800 placeholder-gray-500 focus:outline-none focus:border-amber-600 transition-colors duration-300 resize-none font2"
+                                className="w-full border-0 border-b-2 border-gray-300 bg-transparent py-3 px-0 text-gray-800 placeholder-gray-500 focus:outline-none focus:border-[#52392F] transition-colors duration-300 resize-none font2"
                                 placeholder="Tell us about your travel preferences, special requirements, or any questions you have..."
                             />
                         </div>
@@ -218,7 +209,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ isOpen, onClose, selectedPack
                         <div className="flex justify-end pb-5">
                             <button
                                 onClick={handleSubmit}
-                                className="bg-amber-800 hover:bg-amber-900 text-white px-12 py-4 tracking-widest text-sm font-light transition-colors duration-300 font2"
+                                className="bg-[#52392F] hover:bg-[#4A322A] text-white px-12 py-4 tracking-widest text-sm font-light transition-colors duration-300 font2"
                             >
                                 SEND INQUIRY
                             </button>
@@ -234,6 +225,8 @@ const TourPackages: React.FC = () => {
     const [activeTab, setActiveTab] = useState<string>('quick-escape');
     const [isContactOpen, setIsContactOpen] = useState<boolean>(false);
     const [selectedPackage, setSelectedPackage] = useState<string>('');
+    
+
 
     const handleBookNow = (packageTitle: string, packageSubtitle: string) => {
         setSelectedPackage(`${packageTitle} - ${packageSubtitle}`);
@@ -258,10 +251,10 @@ const TourPackages: React.FC = () => {
             <div className="relative z-10 max-w-7xl mx-auto">
                 {/* Header */}
                 <motion.div 
-                    {...animations.fadeInUp}
+                    {...animations.fadeIn}
                     className="text-center mb-8 md:mb-12 lg:mb-16 px-4"
                 >
-                    <h1 className="text-2xl md:text-4xl lg:text-5xl font-light text-amber-900 mb-4 tracking-[0.1em] md:tracking-[0.2em] font1">
+                    <h1 className="text-2xl md:text-4xl lg:text-5xl font-light text-[#52392F] mb-4 tracking-[0.1em] md:tracking-[0.2em] font1">
                         PACKAGE TRAVEL
                     </h1>
                     <p className="text-sm md:text-base text-gray-600 max-w-3xl mx-auto leading-relaxed font-light font2">
@@ -271,7 +264,7 @@ const TourPackages: React.FC = () => {
 
                 {/* Tab Navigation */}
                 <motion.div 
-                    {...animations.fadeInUp}
+                    {...animations.fadeIn}
                     transition={{ duration: 0.6, delay: 0.2 }}
                     className="flex justify-center mb-8 md:mb-12 px-4"
                 >
@@ -280,7 +273,7 @@ const TourPackages: React.FC = () => {
                             onClick={() => setActiveTab('quick-escape')}
                             className={`flex-1 px-4 md:px-8 py-3 font-light tracking-[0.1em] md:tracking-[0.15em] text-xs md:text-sm transition-colors font2 ${
                                 activeTab === 'quick-escape' 
-                                    ? 'bg-amber-900 text-white' 
+                                    ? 'bg-[#52392F] text-white' 
                                     : 'bg-white/80 text-gray-700 hover:bg-white/90'
                             }`}
                         >
@@ -290,7 +283,7 @@ const TourPackages: React.FC = () => {
                             onClick={() => setActiveTab('day-adventures')}
                             className={`flex-1 px-4 md:px-8 py-3 font-light tracking-[0.1em] md:tracking-[0.15em] text-xs md:text-sm transition-colors font2 ${
                                 activeTab === 'day-adventures' 
-                                    ? 'bg-amber-900 text-white' 
+                                    ? 'bg-[#52392F] text-white' 
                                     : 'bg-white/80 text-gray-700 hover:bg-white/90'
                             }`}
                         >
@@ -315,7 +308,7 @@ const TourPackages: React.FC = () => {
                                 {packageData.map((pkg, index) => (
                                     <motion.div 
                                         key={pkg.id}
-                                        {...animations.fadeInUp}
+                                        {...animations.fadeIn}
                                         transition={{ duration: 0.6, delay: index * 0.1 }}
                                         className={`${pkg.bgColor} ${pkg.textColor} p-6 md:p-8 shadow-2xl backdrop-blur-sm border border-white/20 relative overflow-hidden transition-all duration-300 hover:shadow-3xl transform hover:scale-105 h-[450px] xl:h-[600px] flex flex-col ${
                                             pkg.isPopular ? 'md:scale-105 md:-translate-y-4' : ''
@@ -373,46 +366,51 @@ const TourPackages: React.FC = () => {
                                 animate={{ opacity: 1, y: 0 }}
                                 exit={{ opacity: 0, y: -20 }}
                                 transition={{ duration: 0.5 }}
-                                className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 mb-12 md:mb-16 max-w-5xl mx-auto px-4"
+                                className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mb-12 md:mb-16 max-w-5xl mx-auto px-4"
                             >
                                 {additionalPackages.map((pkg, index) => (
                                     <motion.div 
                                         key={pkg.id}
-                                        {...animations.fadeInUp}
+                                        {...animations.fadeIn}
                                         transition={{ duration: 0.6, delay: index * 0.1 }}
-                                        className={`${pkg.bgColor} ${pkg.textColor} p-6 md:p-8 shadow-2xl backdrop-blur-sm border border-white/20 relative overflow-hidden transition-all duration-300 hover:shadow-3xl transform hover:scale-105 h-[480px] xl:h-[600px] flex flex-col`}
+                                        className={`${pkg.bgColor} ${pkg.textColor} p-6 md:p-8 shadow-2xl backdrop-blur-sm border border-white/20 relative overflow-hidden transition-all duration-300 hover:shadow-3xl transform hover:scale-105 flex flex-col min-h-[500px] xl:min-h-[600px]`}
                                     >
                                         {/* Package Header */}
-                                        <div className="mb-4 md:mb-6">
-                                            <h3 className="text-xl md:text-2xl font-light tracking-[0.15em] md:tracking-[0.2em] mb-2 font1">
+                                        <div className="mb-4">
+                                            <h3 className="text-lg md:text-xl xl:text-2xl font-light tracking-[0.15em] md:tracking-[0.2em] mb-2 font1">
                                                 {pkg.title}
                                             </h3>
-                                            <p className="text-xs md:text-sm font-medium mb-3 md:mb-4 opacity-90 font2">
+                                            <p className="text-xs md:text-sm font-medium mb-2 md:mb-3 opacity-90 font2">
                                                 {pkg.subtitle}
                                             </p>
-                                            <p className="text-xs md:text-sm leading-relaxed font-light mb-4 md:mb-6 font2">
+                                            <p className="text-xs leading-relaxed font-light mb-3 md:mb-4 font2 opacity-80">
                                                 {pkg.description}
                                             </p>
                                         </div>
 
                                         {/* Features */}
-                                        <div className="space-y-2 md:space-y-3 flex-grow">
+                                        <div className="space-y-2 flex-grow">
                                             {pkg.features.map((feature, idx) => (
-                                                <div key={idx} className="flex items-start">
-                                                    <div className="w-2 h-2 bg-current rounded-full mt-2 mr-3 flex-shrink-0"></div>
-                                                    <span className="text-xs md:text-sm leading-relaxed font-light font2">{feature}</span>
+                                                <div 
+                                                    key={idx} 
+                                                    className="flex items-start"
+                                                >
+                                                    <div className="w-1.5 h-1.5 bg-current rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                                                    <span className="text-xs leading-relaxed font-light font2">{feature}</span>
                                                 </div>
                                             ))}
                                         </div>
 
                                         {/* Book Now Button */}
-                                        <div className="mt-auto pt-4">
-                                            <button 
+                                        <div className="mt-4 pt-3 border-t border-current/10">
+                                            <motion.button 
                                                 onClick={() => handleBookNow(pkg.title, pkg.subtitle)}
-                                                className={`w-full py-3 md:py-4 px-4 md:px-6 transition-all duration-300 tracking-[0.1em] md:tracking-[0.15em] text-xs md:text-sm font-light font2 ${pkg.buttonStyle}`}
+                                                className={`w-full py-3 px-4 md:px-6 transition-all duration-300 tracking-[0.1em] md:tracking-[0.15em] text-xs md:text-sm font-light font2 ${pkg.buttonStyle}`}
+                                                whileHover={{ scale: 1.02 }}
+                                                whileTap={{ scale: 0.98 }}
                                             >
                                                 BOOK NOW
-                                            </button>
+                                            </motion.button>
                                         </div>
                                     </motion.div>
                                 ))}
@@ -423,7 +421,7 @@ const TourPackages: React.FC = () => {
 
                 {/* Not Sure? Ask Expert Button */}
                 <motion.div 
-                    {...animations.fadeInUp}
+                    {...animations.fadeIn}
                     transition={{ duration: 0.6, delay: 0.3 }}
                     className="text-center"
                 >
@@ -437,7 +435,7 @@ const TourPackages: React.FC = () => {
                                 contactSection.scrollIntoView({ behavior: 'smooth' });
                             }
                         }}
-                        className="px-12 py-4 bg-amber-600 text-white hover:bg-transparent border-2 border-amber-600 hover:text-amber-600 transition-all duration-300 tracking-[0.15em] text-sm font-light hover:shadow-lg rounded-none font2"
+                        className="px-12 py-4 bg-[#52392F] text-white hover:bg-transparent border-2 border-[#52392F] hover:text-[#52392F] transition-all duration-300 tracking-[0.15em] text-sm font-light hover:shadow-lg rounded-none font2"
                     >
                         ASK OUR EXPERT
                     </button>

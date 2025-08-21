@@ -8,8 +8,8 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
-// Import animations
-import { animations, staggerContainer, staggerChild } from '@/src/lib/animations';
+// Import your updated animations
+import { animations, stagger } from '@/src/lib/animations';
 
 // import image
 import lpb_street from "@/public/assets/lpb_street.jpg";
@@ -54,26 +54,23 @@ const LocalReview = () => {
         <section className="min-h-screen bg-gray-50">
             {/* Header */}
             <motion.div 
-                initial="initial"
-                whileInView="animate"
-                viewport={{ once: false, amount: 0.3 }}
-                variants={staggerContainer}
                 className="text-center py-16 px-10"
             >
                 <motion.h1 
-                    variants={staggerChild}
+
                     className="font2 text-lg text-gray-600 mb-2 font-light tracking-wider"
                 >
                     Review
                 </motion.h1>
                 <motion.h2 
-                    variants={staggerChild}
+
                     className="font1 text-4xl md:text-5xl font-light text-gray-800 mb-6 tracking-widest"
+                    {...animations.fadeIn}
                 >
                     LOCAL REVIEW
                 </motion.h2>
                 <motion.p 
-                    variants={staggerChild}
+
                     className="font2 text-sm xl:text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed"
                 >
                     An enjoyable stroll from Sofitel Luang Prabang brings you to a fascinating display of Laos
@@ -82,7 +79,7 @@ const LocalReview = () => {
 
             {/* Image Swiper */}
             <motion.div 
-                {...animations.scaleIn}
+                {...animations.fadeUp}
                 className="relative w-full h-80 md:h-96 mb-16"
             >
                 <Swiper
@@ -124,31 +121,36 @@ const LocalReview = () => {
                 
                 {/* Custom Navigation Buttons */}
                 <motion.button 
-                    {...animations.slideInLeft}
-                    transition={{ duration: 0.6, delay: 0.2 }}
+                    {...animations.fadeUp}
                     className="image-swiper-button-prev absolute left-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-80 hover:bg-opacity-100 rounded-full p-3 transition-all duration-300 z-10"
+                    whileHover={{ 
+                        scale: 1.1,
+                        transition: { duration: 0.3, ease: [0.16, 1, 0.3, 1] }
+                    }}
                 >
                     <ChevronLeft className="w-6 h-6 text-gray-800" />
                 </motion.button>
                 <motion.button 
-                    {...animations.slideInRight}
-                    transition={{ duration: 0.6, delay: 0.2 }}
+                    {...animations.fadeUp}
                     className="image-swiper-button-next absolute right-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-80 hover:bg-opacity-100 rounded-full p-3 transition-all duration-300 z-10"
+                    whileHover={{ 
+                        scale: 1.1,
+                        transition: { duration: 0.3, ease: [0.16, 1, 0.3, 1] }
+                    }}
                 >
                     <ChevronRight className="w-6 h-6 text-gray-800" />
                 </motion.button>
 
                 {/* Custom Pagination */}
                 <motion.div 
-                    {...animations.fadeInUp}
-                    transition={{ duration: 0.6, delay: 0.3 }}
+                    {...animations.fadeIn}
                     className="image-swiper-pagination absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2 z-10"
                 ></motion.div>
             </motion.div>
 
             {/* Main Review Text */}
             <motion.div 
-                {...animations.fadeInUp}
+                {...animations.fadeUp}
                 className="text-center px-10 mb-16 max-w-4xl mx-auto"
             >
                 <p className="font2 text-gray-700 leading-relaxed text-xs xl:text-lg">
@@ -158,15 +160,14 @@ const LocalReview = () => {
 
             {/* Review Cards Swiper Section */}
             <motion.div 
-                {...animations.fadeInUp}
+                {...animations.fadeUp}
                 className="bg-white py-16 px-4"
             >
                 <div className="max-w-7xl mx-auto">
                     <div className="relative">
                         {/* Review Cards Swiper */}
                         <motion.div
-                            {...animations.scaleIn}
-                            transition={{ duration: 0.8, delay: 0.2 }}
+                            {...animations.scaleUp}
                         >
                             <Swiper
                                 modules={[Navigation]}
@@ -191,23 +192,22 @@ const LocalReview = () => {
                                 {reviewsData.map((review, index) => (
                                     <SwiperSlide key={review.id}>
                                         <motion.div 
-                                            {...animations.fadeInUp}
-
-                viewport={{ once: false, amount: 0.3 }}
-                                            transition={{ duration: 0.6, delay: index * 0.1 }}
+                                            {...animations.fadeUp}
                                             className="bg-gray-50 p-6 rounded-lg h-full"
+                                            whileHover={{ 
+                                                y: -5,
+                                                transition: { duration: 0.3, ease: [0.16, 1, 0.3, 1] }
+                                            }}
                                         >
                                             <motion.p 
-                                                {...animations.fadeInUp}
-                                                transition={{ duration: 0.6, delay: index * 0.1 + 0.1 }}
+                                                {...animations.fadeIn}
                                                 className="font2 text-gray-700 text-sm leading-relaxed mb-6"
                                             >
                                                 "{review.text}"
                                             </motion.p>
                                             
                                             <motion.div 
-                                                {...animations.slideInLeft}
-                                                transition={{ duration: 0.6, delay: index * 0.1 + 0.2 }}
+                                                {...animations.scaleUp}
                                                 className="flex items-center"
                                             >
                                                 <div className="w-12 h-12 bg-gray-300 rounded-full mr-4 overflow-hidden">
@@ -228,8 +228,7 @@ const LocalReview = () => {
                                                     </p>
                                                 </div>
                                                 <motion.div 
-                                                    {...animations.scaleIn}
-                                                    transition={{ duration: 0.5, delay: index * 0.1 + 0.3 }}
+                                                    {...animations.scaleUp}
                                                     className="flex text-yellow-400"
                                                 >
                                                     {[...Array(review.rating)].map((_, i) => (
@@ -237,8 +236,12 @@ const LocalReview = () => {
                                                             key={i} 
                                                             initial={{ opacity: 0, scale: 0 }}
                                                             whileInView={{ opacity: 1, scale: 1 }}
-                                                            viewport={{ once: false }}
-                                                            transition={{ duration: 0.3, delay: i * 0.1 }}
+                                                            viewport={{ once: true }}
+                                                            transition={{ 
+                                                                duration: 0.5, 
+                                                                ease: [0.16, 1, 0.3, 1],
+                                                                delay: i * 0.1 
+                                                            }}
                                                             className="text-lg"
                                                         >
                                                             ★
@@ -254,16 +257,35 @@ const LocalReview = () => {
 
                         {/* Review Navigation */}
                         <motion.div 
-                            {...animations.slideInRight}
-                            transition={{ duration: 0.6, delay: 0.4 }}
+                            {...animations.fadeUp}
                             className="flex justify-end space-x-2"
                         >
-                            <button className="review-swiper-button-prev p-2 border border-gray-300 rounded hover:bg-gray-100 transition-colors duration-300">
+                            <motion.button 
+                                className="review-swiper-button-prev p-2 border border-gray-300 rounded hover:bg-gray-100 transition-colors duration-300"
+                                whileHover={{ 
+                                    scale: 1.05,
+                                    transition: { duration: 0.3, ease: [0.16, 1, 0.3, 1] }
+                                }}
+                                whileTap={{ 
+                                    scale: 0.95,
+                                    transition: { duration: 0.2, ease: [0.16, 1, 0.3, 1] }
+                                }}
+                            >
                                 <ChevronLeft className="w-5 h-5 text-gray-600" />
-                            </button>
-                            <button className="review-swiper-button-next p-2 border border-gray-300 rounded hover:bg-gray-100 transition-colors duration-300">
+                            </motion.button>
+                            <motion.button 
+                                className="review-swiper-button-next p-2 border border-gray-300 rounded hover:bg-gray-100 transition-colors duration-300"
+                                whileHover={{ 
+                                    scale: 1.05,
+                                    transition: { duration: 0.3, ease: [0.16, 1, 0.3, 1] }
+                                }}
+                                whileTap={{ 
+                                    scale: 0.95,
+                                    transition: { duration: 0.2, ease: [0.16, 1, 0.3, 1] }
+                                }}
+                            >
                                 <ChevronRight className="w-5 h-5 text-gray-600" />
-                            </button>
+                            </motion.button>
                         </motion.div>
                     </div>
                 </div>
