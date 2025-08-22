@@ -1,4 +1,5 @@
 "use client";
+export const runtime = "edge";
 import Image, { StaticImageData } from "next/image";
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
@@ -709,7 +710,6 @@ export default function DestinationPage() {
           title={`${currentDestination.location.title} Location Map`}
         />
       </motion.div>
-
       {/* Contact form - ANIMATED */}
       <motion.div {...animations.fadeUp}>
         <ContactUs />
