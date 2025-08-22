@@ -310,7 +310,7 @@ const TourPackages: React.FC = () => {
                                         key={pkg.id}
                                         {...animations.fadeIn}
                                         transition={{ duration: 0.6, delay: index * 0.1 }}
-                                        className={`${pkg.bgColor} ${pkg.textColor} p-6 md:p-8 shadow-2xl backdrop-blur-sm border border-white/20 relative overflow-hidden transition-all duration-300 hover:shadow-3xl transform hover:scale-105 h-[450px] xl:h-[600px] flex flex-col ${
+                                        className={`${pkg.bgColor} ${pkg.textColor} p-6 md:p-8 shadow-2xl backdrop-blur-sm border border-white/20 relative overflow-hidden transition-all duration-300 hover:shadow-3xl transform hover:scale-105 h-[500px] xl:h-[600px] flex flex-col ${
                                             pkg.isPopular ? 'md:scale-105 md:-translate-y-4' : ''
                                         }`}
                                     >
