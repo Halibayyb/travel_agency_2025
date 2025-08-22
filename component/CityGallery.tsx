@@ -1,5 +1,4 @@
 'use client';
-
 import Image from "next/image";
 import Link from "next/link";
 import { useState, useRef } from "react";
@@ -188,9 +187,11 @@ const CitiesGallery = () => {
                         }}
                         autoplay={{
                             delay: 3000,
-                            disableOnInteraction: false,
+                            disableOnInteraction: false, // Set to false to continue autoplay after user interaction
+        pauseOnMouseEnter: true, // Pause autoplay when mouse enters Swiper container
+        stopOnLastSlide: false, // Set to true to stop autoplay on the last slide
                         }}
-                        speed={1500}
+                        speed={1000}
                         onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
                         breakpoints={{
                             320: { slidesPerView: 1 },
