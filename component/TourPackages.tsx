@@ -252,13 +252,13 @@ const TourPackages: React.FC = () => {
                 {/* Header */}
                 <motion.div 
                     {...animations.fadeIn}
-                    className="text-center mb-8 md:mb-12 lg:mb-16 px-4"
+                    className="text-center mb-8 lg:mb-10 px-4"
                 >
                     <h1 className="text-2xl md:text-4xl lg:text-5xl font-light text-[#52392F] mb-4 tracking-[0.1em] md:tracking-[0.2em] font1">
-                        PACKAGE TRAVEL
+                        TRAVEL PACKAGES
                     </h1>
-                    <p className="text-sm md:text-base text-gray-600 max-w-3xl mx-auto leading-relaxed font-light font2">
-                        the essence of Laos culture and nature in unforgettable day journeys
+                    <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed font-light font2">
+                        designed to inspire your perfect trip
                     </p>
                 </motion.div>
 
@@ -277,7 +277,7 @@ const TourPackages: React.FC = () => {
                                     : 'bg-white/80 text-gray-700 hover:bg-white/90'
                             }`}
                         >
-                            QUICK ESCAPE
+                            Signature Journeys
                         </button>
                         <button 
                             onClick={() => setActiveTab('day-adventures')}
@@ -287,7 +287,7 @@ const TourPackages: React.FC = () => {
                                     : 'bg-white/80 text-gray-700 hover:bg-white/90'
                             }`}
                         >
-                            DAY ADVENTURES
+                            Daily Escapes
                         </button>
                     </div>
                 </motion.div>
@@ -368,52 +368,59 @@ const TourPackages: React.FC = () => {
                                 transition={{ duration: 0.5 }}
                                 className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mb-12 md:mb-16 max-w-5xl mx-auto px-4"
                             >
-                                {additionalPackages.map((pkg, index) => (
-                                    <motion.div 
-                                        key={pkg.id}
-                                        {...animations.fadeIn}
-                                        transition={{ duration: 0.6, delay: index * 0.1 }}
-                                        className={`${pkg.bgColor} ${pkg.textColor} p-6 md:p-8 shadow-2xl backdrop-blur-sm border border-white/20 relative overflow-hidden transition-all duration-300 hover:shadow-3xl transform hover:scale-105 flex flex-col min-h-[500px] xl:min-h-[600px]`}
-                                    >
-                                        {/* Package Header */}
-                                        <div className="mb-4">
-                                            <h3 className="text-lg md:text-xl xl:text-2xl font-light tracking-[0.15em] md:tracking-[0.2em] mb-2 font1">
-                                                {pkg.title}
-                                            </h3>
-                                            <p className="text-xs md:text-sm font-medium mb-2 md:mb-3 opacity-90 font2">
-                                                {pkg.subtitle}
-                                            </p>
-                                            <p className="text-xs leading-relaxed font-light mb-3 md:mb-4 font2 opacity-80">
-                                                {pkg.description}
-                                            </p>
-                                        </div>
+{additionalPackages.map((pkg, index) => (
+    <motion.div 
+        key={pkg.id}
+        {...animations.fadeIn}
+        transition={{ duration: 0.6, delay: index * 0.1 }}
+        className={`${pkg.bgColor} ${pkg.textColor} p-6 md:p-8 shadow-2xl backdrop-blur-sm border border-white/20 relative overflow-hidden transition-all duration-300 hover:shadow-3xl transform hover:scale-105 flex flex-col min-h-[450px] xl:min-h-[550px]`}
+    >
+        {/* Package Header */}
+        <div className="mb-4">
+            <h3 className="text-lg md:text-xl xl:text-2xl font-light tracking-[0.15em] md:tracking-[0.2em] mb-2 font1">
+                {pkg.title}
+            </h3>
+            <p className="text-xs md:text-sm font-medium mb-2 md:mb-3 opacity-90 font2">
+                {pkg.subtitle}
+            </p>
+            
+            <p className="text-xs leading-relaxed font-light mb-3 md:mb-4 font2 opacity-80">
+                {pkg.description}
+            </p>
+        </div>
 
-                                        {/* Features */}
-                                        <div className="space-y-2 flex-grow">
-                                            {pkg.features.map((feature, idx) => (
-                                                <div 
-                                                    key={idx} 
-                                                    className="flex items-start"
-                                                >
-                                                    <div className="w-1.5 h-1.5 bg-current rounded-full mt-2 mr-3 flex-shrink-0"></div>
-                                                    <span className="text-xs leading-relaxed font-light font2">{feature}</span>
-                                                </div>
-                                            ))}
-                                        </div>
+        {/* Features - This will grow to fill available space */}
+        <div className="space-y-2 flex-grow">
+            {pkg.features.map((feature, idx) => (
+                <div 
+                    key={idx} 
+                    className="flex items-start"
+                >
+                    <div className="w-1.5 h-1.5 bg-current rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                    <span className="text-md leading-relaxed font-light font2">{feature}</span>
+                </div>
+            ))}
+        </div>
 
-                                        {/* Book Now Button */}
-                                        <div className="mt-4 pt-3 border-t border-current/10">
-                                            <motion.button 
-                                                onClick={() => handleBookNow(pkg.title, pkg.subtitle)}
-                                                className={`w-full py-3 px-4 md:px-6 transition-all duration-300 tracking-[0.1em] md:tracking-[0.15em] text-xs md:text-sm font-light font2 ${pkg.buttonStyle}`}
-                                                whileHover={{ scale: 1.02 }}
-                                                whileTap={{ scale: 0.98 }}
-                                            >
-                                                BOOK NOW
-                                            </motion.button>
-                                        </div>
-                                    </motion.div>
-                                ))}
+        {/* Price Display - This will stay at bottom */}
+        <div className="text-center mb-6 md:mb-8 mt-6">
+            <div className="text-xl xl:text-2xl font-light mb-2 font2">${pkg.price} USD</div>
+            <div className="text-xs opacity-80 tracking-wider font2">for 1-2 people</div>
+        </div>
+
+        {/* Book Now Button - This will stay at very bottom */}
+        <div className="mt-4 pt-3 border-t border-current/10">
+            <motion.button 
+                onClick={() => handleBookNow(pkg.title, pkg.subtitle)}
+                className={`w-full py-3 px-4 md:px-6 transition-all duration-300 tracking-[0.1em] md:tracking-[0.15em] text-xs md:text-sm font-light font2 ${pkg.buttonStyle}`}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+            >
+                BOOK NOW
+            </motion.button>
+        </div>
+    </motion.div>
+))}
                             </motion.div>
                         )}
                     </AnimatePresence>

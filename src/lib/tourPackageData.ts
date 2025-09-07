@@ -78,56 +78,59 @@ export const packageData: Package[] = [
 ];
 
 export const additionalPackages: Package[] = [
-    {
-        id: 4,
-        title: "RIVER & RITUALS",
-        subtitle: "MEKONG CRUISE + PAK OU CAVES + BACI CEREMONY",
-        description: "A serene journey exploring Luang Prabang's sacred heritage and connection to the mighty Mekong River. Visit historic royal sites before embarking on a peaceful river cruise to ancient caves and authentic village ceremonies.",
-        features: [
-            "National Museum (former Royal Palace) & Wat Xieng Thong tour",
-            "Private traditional slow-boat cruise on Mekong River",
-            "Sacred Pak Ou Caves with thousands of Buddha images",
-            "Authentic Baci welcome ceremony in local village",
-            "Beautiful sunset cruise back to Luang Prabang"
-        ],
-        bgColor: "bg-white/90",
-        textColor: "text-gray-800",
-        buttonStyle: "bg-[#52392F] text-white hover:bg-[#4A322A]"
-    },
-    {
-        id: 5,
-        title: "HERITAGE & CASCADE",
-        subtitle: "CITY TOUR + KUANG SI WATERFALL",
-        description: "Perfect blend of Luang Prabang's cultural treasures with its most spectacular natural wonder. Explore the city's royal and spiritual history before venturing to majestic waterfalls for a refreshing afternoon in nature.",
-        features: [
-            "Wat Xieng Thong & Royal Palace Museum guided tour",
-            "Local art museum showcasing Laos's diverse ethnic groups",
-            "Spectacular Kuang Si Waterfall with turquoise pools",
-            "Swimming opportunity in famous waterfall pools",
-            "Delightful stop at Lao Buffalo Dairy farm"
-        ],
-        bgColor: "bg-[#52392F]/95",
-        textColor: "text-white",
-        buttonStyle: "bg-white text-[#52392F] hover:bg-gray-100"
-    },
-    {
-        id: 6,
-        title: "COMPLETE EXPERIENCE",
-        subtitle: "SUNRISE TO SUNSET LUANG PRABANG",
-        description: "The most comprehensive single-day experience revealing the heart and soul of Luang Prabang from spiritual dawn to vibrant cultural life. Perfect for those wanting the full essence of the city in one unforgettable day.",
-        features: [
-            "Early morning Alms Giving ceremony with 150+ monks",
-            "Visit to lively local fresh market with villagers",
-            "Wat Xieng Thong & Royal Palace Museum exploration",
-            "Heritage house & art museum dedicated to Lao minorities",
-            "Ock Pop Tok weaving center visit",
-            "Mount Phousi sunset with breathtaking panoramic views"
-        ],
-        bgColor: "bg-white/90",
-        textColor: "text-gray-800",
-        buttonStyle: "bg-[#52392F] text-white hover:bg-[#4A322A]"
-    }
+  {
+    id: 4,
+    title: "RIVER & RITUALS",
+    subtitle: "MEKONG CRUISE + PAK OU CAVES + BACI CEREMONY",
+    description:
+      "Discover Luang Prabang’s sacred heritage with a river cruise to ancient caves and a traditional Baci ceremony.",
+    features: [
+      "Private boat",
+      "Professional English-speaking guide",
+      "Baci ceremony",
+      "All entrance fees",
+      "All on-the-ground transfers",
+    ],
+    bgColor: "bg-white/90",
+    textColor: "text-gray-800",
+    buttonStyle: "bg-[#52392F] text-white hover:bg-[#4A322A]",
+    price: "200",
+  },
+  {
+    id: 5,
+    title: "HERITAGE & CASCADE",
+    subtitle: "CITY TOUR + KUANG SI WATERFALL",
+    description:
+      "Experience Luang Prabang’s royal history before unwinding at the stunning Kuang Si waterfalls.",
+    features: [
+      "Professional English-speaking guide",
+      "Private car",
+      "All entrance fees",
+    ],
+    bgColor: "bg-[#52392F]/95",
+    textColor: "text-white",
+    buttonStyle: "bg-white text-[#52392F] hover:bg-gray-100",
+    price: "175",
+  },
+  {
+    id: 6,
+    title: "COMPLETE EXPERIENCE",
+    subtitle: "SUNRISE TO SUNSET LUANG PRABANG",
+    description:
+      "A full-day journey from spiritual dawn rituals to vibrant evening culture — the essence of Luang Prabang in one day.",
+    features: [
+      "Professional English-speaking guide",
+      "Car for transfers",
+      "Offering for the monks",
+      "All entrance fees",
+    ],
+    bgColor: "bg-white/90",
+    textColor: "text-gray-800",
+    buttonStyle: "bg-[#52392F] text-white hover:bg-[#4A322A]",
+    price: "180",
+  },
 ];
+
 
 // Day experience pricing (separate from packages above)
 export const dayExperiencePricing = {

@@ -49,8 +49,12 @@ const ContactUs = () => {
             {/* Header */}
             <div className="text-center mb-16">
                 <h1 className="text-2xl xl:text-5xl font-light text-gray-800 tracking-widest font1">
-                    CONTACT US
+                    Connect with us
                 </h1>
+                <p 
+                    className="font2 text-sm xl:text-base text-gray-600 max-w-2xl mx-auto leading-relaxed mt-5"
+                
+                >We would be delighted to hear from you and begin the journey of planning your perfect trip to Laos. Whether you have a specific itinerary in mind or are simply seeking inspiration, we are here to provide personal guidance and answer any questions you may have.</p>
             </div>
 
             <div className="max-w-7xl mx-auto">
@@ -62,15 +66,13 @@ const ContactUs = () => {
                             <h2 className="text-2xl font-light text-gray-800 mb-2 xl:mb-6 tracking-wide font1">
                                 Call Us
                             </h2>
-                            <p className="text-gray-600 mb-8 leading-relaxed font2">
-                                An enjoyable stroll from Sofitel Luang Prabang brings you to a
-                            </p>
+
                             <div className="flex items-center">
                                 <div className="w-12 h-12  rounded-full flex items-center justify-center mr-4">
                                     <Phone className="w-5 h-5 text-amber-700" />
                                 </div>
                                 <span className="text-gray-700 text-sm xl:text-lg font2">
-                                    +856 20 xx xxx xxx
+                                    +856 20 555 70891
                                 </span>
                             </div>
                         </div>
@@ -80,15 +82,13 @@ const ContactUs = () => {
                             <h2 className="text-2xl font-light text-gray-800 mb-2 xl:mb-6 tracking-wide font1">
                                 Email
                             </h2>
-                            <p className="text-gray-600 mb-8 leading-relaxed font2">
-                                An enjoyable stroll from Sofitel Luang Prabang brings you to a
-                            </p>
+
                             <div className="flex items-center">
                                 <div className="w-12 h-12  rounded-full flex items-center justify-center mr-4">
                                     <Mail className="w-5 h-5 text-amber-700" />
                                 </div>
                                 <span className="text-gray-700 text-sm xl:text-lg font2">
-                                    LuangPrabang@gmail.com
+                                    soulivong.nattaline@gmail.com
                                 </span>
                             </div>
                         </div>
@@ -98,15 +98,13 @@ const ContactUs = () => {
                             <h2 className="text-2xl font-light text-gray-800 mb-2 xl:mb-6 tracking-wide font1">
                                 Address
                             </h2>
-                            <p className="text-gray-600 mb-8 leading-relaxed font2">
-                                An enjoyable stroll from Sofitel Luang Prabang brings you to a
-                            </p>
+
                             <div className="flex items-center">
                                 <div className="w-12 h-12  rounded-full flex items-center justify-center mr-4">
                                     <MapPin className="w-5 h-5 text-amber-700" />
                                 </div>
                                 <span className="text-gray-700 text-sm xl:text-lg font2">
-                                    123, Luang Pra barng
+                                    01191, Luang Prabang, Laos
                                 </span>
                             </div>
                         </div>
@@ -118,7 +116,7 @@ const ContactUs = () => {
                             Send a Message
                         </h2>
                         <p className="text-md xl:text-xl text-gray-600 mb-8 leading-relaxed font2">
-                            An enjoyable stroll from Sofitel Luang Prabang brings you to a fascinating display of Laos
+                            Please feel free to reach out to us, and let us help you craft an experience that is uniquely yours.
                         </p>
 
                         <form onSubmit={handleSubmit} className="space-y-8">

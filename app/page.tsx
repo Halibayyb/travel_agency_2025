@@ -23,7 +23,7 @@ export default function Home() {
       
       <CityMaps />
       <TourPackages />
-      <LocalReview />
+      {/* <LocalReview /> */}
       <ContactUs />
       <LocationPage />
 

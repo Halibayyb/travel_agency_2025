@@ -13,7 +13,7 @@ const Footer = () => {
                         KHAMTRAVEL
                     </h1>
                     <p className="font2 text-sm text-amber-100 max-w-md leading-relaxed">
-                        An enjoyable stroll from Sofitel Luang Prabang brings you to a fascinating display of Laos
+                        Every journey we craft is a reflection of our founder's lifelong dedication to sharing the serene beauty and rich culture of Laos
                     </p>
                 </div>
 
@@ -28,7 +28,7 @@ const Footer = () => {
                             Call us
                         </h3>
                         <p className="font2 text-amber-100 text-sm">
-                            +856 20 xx xxx xxx
+                            +856 20 555 70891
                         </p>
                     </div>
 
@@ -38,7 +38,7 @@ const Footer = () => {
                             Email
                         </h3>
                         <p className="font2 text-amber-100 text-sm">
-                            Laungprabang@gmail.com
+                            soulivong.nattaline@gmail.com
                         </p>
                     </div>
 
@@ -48,7 +48,7 @@ const Footer = () => {
                             Address
                         </h3>
                         <p className="font2 text-amber-100 text-sm leading-relaxed">
-                            An enjoyable stroll from Sofitel Luang Prabang brings you to a
+                            01191, Luang Prabang, Laos
                         </p>
                     </div>
 

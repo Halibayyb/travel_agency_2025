@@ -9,7 +9,7 @@ import Link from "next/link";
 // import templeImage from "@/public/assets/temple.jpg";
 // import waterfallImage from "@/public/assets/waterfall.jpg";
 // import marketImage from "@/public/assets/market.jpg";
-import mapBackground from "@/public/assets/city_map.png"; // Add your map image here
+import mapBackground from "@/public/assets/city_map.jpg"; // Add your map image here
 // import marketImage from "@/public/assets/market.jpg";
 import lpbImg from "@/public/assets/royal_palace_img.jpg";
 import nkImg from "@/public/assets/nong_khiaw.jpg";
@@ -19,40 +19,40 @@ import vteImg from "@/public/assets/vientiane.jpg";
 const mapLocations = [
   {
     id: 1,
-    title: "Luang Prabang\nRoyal Palace",
+    title: "Luang Prabang",
     destination: "luang-prabang",
     description:
-      "An enjoyable stroll from Sofitel Luang\nPrabang brings you to a fascinating",
+      "Find your peace in a culture of timeless charm, where the serene Mekong and ancient temples define the tranquil pace of life.",
     image: lpbImg,
     placeholder: "bg-amber-200",
     side: "left",
   },
   {
     id: 2,
-    title: "Nong Khiaw\nLocal village",
+    title: "Nong Khiaw",
     destination: "nong-khiaw",
     description:
-      "An enjoyable stroll from Sofitel Luang\nPrabang brings you to",
+      "Discover Nong Khiaw's authentic village life set against a breathtaking backdrop of towering cliffs and a tranquil river.",
     image: nkImg,
     placeholder: "bg-orange-200",
     side: "right",
   },
   {
     id: 3,
-    title: "Vang vieng\ncity of nature",
+    title: "Vang vieng",
     destination: "vang-vieng",
     description:
-      "An enjoyable stroll from Sofitel Luang\nPrabang brings you to",
+      "Vang Vieng's dramatic landscape is the ultimate backdrop for thrilling adventures that create unforgettable memories.",
     image: vvImg,
     placeholder: "bg-blue-200",
     side: "left",
   },
   {
     id: 4,
-    title: "Vientiane\nheart of Laos",
+    title: "Vientiane",
     destination: "vientiane",
     description:
-      "An enjoyable stroll from Sofitel Luang\nPrabang brings you to",
+      "Unwind in Vientiane's laid-back atmosphere, a city that blends old-world charm with the welcoming spirit of the Lao people.",
     image: vteImg,
     placeholder: "bg-purple-200",
     side: "right",
@@ -115,17 +115,17 @@ const CityMaps = () => {
       className="min-h-screen py-8 md:py-16 relative overflow-hidden"
     >
       {/* Background Map */}
-      <div className="absolute inset-0 bg-white">
-        <Image
-          src={mapBackground}
-          alt="Luang Prabang Map"
-          fill
-          priority
-          className="absolute inset-0 object-cover"
-        />
-        <div className="absolute inset-0 "></div>
-      </div>
-
+      <div className="absolute inset-0">
+  <Image
+    src={mapBackground}
+    alt="Luang Prabang Map"
+    fill
+    priority
+    className="absolute inset-0 object-cover"
+  />
+  {/* White overlay with transparency */}
+  <div className="absolute inset-0 bg-white/50"></div>
+</div>
       {/* Header */}
       <motion.div
         className="text-center mb-8 md:mb-16 relative z-10 px-4"

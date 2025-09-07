@@ -2,13 +2,14 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { CircleCheck } from "lucide-react";
 
 // Import your updated animations
 import { animations, stagger } from "@/src/lib/animations";
 
 // Import images
 import aboutImage from "@/public/assets/hero_image.jpg";
-import khamtravel from "@/public/assets/khamtravel_img.jpg";
+import khamtravel from "@/public/assets/kham_and_tourist/khamtravel4.jpg";
 import lpbStreet from "@/public/assets/lpb/lpbStreet1.webp";
 
 // Story timeline data - 5 phases
@@ -88,7 +89,7 @@ const AboutPage = () => {
           {...animations.fadeUp}
           className="font2 text-sm xl:text-lg text-gray-600 max-w-2xl mx-auto"
         >
-          From humble beginnings to becoming Laos' most trusted travel companion
+          Every journey we craft is a reflection of our founder's lifelong dedication to sharing the serene beauty and rich culture of Laos
         </motion.p>
       </motion.div>
 
@@ -210,25 +211,25 @@ const AboutPage = () => {
               whileHover={{ scale: 1.05 }}
               transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
             >
-              42+
+              25
             </motion.div>
             <p className="font2 text-gray-600 text-xs sm:text-sm">
               Years Experience
             </p>
           </motion.div>
 
-          <motion.div variants={stagger.item} className="space-y-2">
-            <motion.div
-              className="font1 text-3xl sm:text-4xl md:text-5xl font-bold text-[#4A322A]"
-              whileHover={{ scale: 1.05 }}
-              transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            >
-              122+
-            </motion.div>
-            <p className="font2 text-gray-600 text-xs sm:text-sm">
-              Stories nationwide
-            </p>
-          </motion.div>
+          <motion.div variants={stagger.item} className="space-y-2 text-center">
+  <motion.div
+    whileHover={{ scale: 1.05 }}
+    transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+    className="inline-block"
+  >
+    <CircleCheck className="w-8 h-8 xl:w-10 xl:h-10 text-[#4A322A]" />
+  </motion.div>
+  <p className="font2 text-gray-600 text-xs sm:text-sm">
+    Licensed Tour Operator
+  </p>
+</motion.div>
 
           <motion.div variants={stagger.item} className="space-y-2">
             <motion.div

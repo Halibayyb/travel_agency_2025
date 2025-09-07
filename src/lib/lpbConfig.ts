@@ -15,6 +15,28 @@ import lpb4 from "@/public/assets/lpb/lpbStreet4.jpg"
 import lpb5 from "@/public/assets/lpb/lpbStreet5.jpg"
 import lpb6 from "@/public/assets/lpb/lpbStreet6.jpg"
 
+// lpb art & tradition
+import lpb_art_1 from "@/public/assets/lpb/lpb_art_tradition/img1.jpg"
+import lpb_art_2 from "@/public/assets/lpb/lpb_art_tradition/img2.jpg"
+import lpb_art_3 from "@/public/assets/lpb/lpb_art_tradition/img3.jpg"
+import lpb_art_4 from "@/public/assets/lpb/lpb_art_tradition/img4.jpg"
+import lpb_art_5 from "@/public/assets/lpb/lpb_art_tradition/img5.jpg"
+import lpb_art_6 from "@/public/assets/lpb/lpb_art_tradition/img6.jpg"
+import lpb_art_7 from "@/public/assets/lpb/lpb_art_tradition/img7.jpg"
+
+// lpb bamboo
+import lpb_bamboo_1 from "@/public/assets/lpb/lpb_bamboo/img1.jpg"
+import lpb_bamboo_2 from "@/public/assets/lpb/lpb_bamboo/img2.jpg"
+import lpb_bamboo_3 from "@/public/assets/lpb/lpb_bamboo/img3.jpg"
+import lpb_bamboo_4 from "@/public/assets/lpb/lpb_bamboo/img4.jpg"
+import lpb_bamboo_5 from "@/public/assets/lpb/lpb_bamboo/img5.jpg"
+import lpb_bamboo_6 from "@/public/assets/lpb/lpb_bamboo/img6.jpg"
+import lpb_bamboo_7 from "@/public/assets/lpb/lpb_bamboo/img7.jpg"
+import lpb_bamboo_8 from "@/public/assets/lpb/lpb_bamboo/img8.png"
+import lpb_bamboo_9 from "@/public/assets/lpb/lpb_bamboo/img9.jpg"
+import lpb_bamboo_10 from "@/public/assets/lpb/lpb_bamboo/img10.jpg"
+
+
 // nk images
 import nk1 from "@/public/assets/nk/nk1.jpg"
 import nk2 from "@/public/assets/nk/nk2.jpg"
@@ -37,6 +59,23 @@ import vte3 from "@/public/assets/vte/vte3.jpg"
 import vte4 from "@/public/assets/vte/vte4.jpg"
 import vte5 from "@/public/assets/vte/vte5.jpg"
 import vte6 from "@/public/assets/vte/vte6.jpg"
+
+
+// Capture fromour client
+import khamtravel from "@/public/assets/kham_and_tourist/khamtravel.jpg"
+import khamtravel2 from "@/public/assets/kham_and_tourist/khamtravel2.jpg"
+import khamtravel3 from "@/public/assets/kham_and_tourist/khamtravel3.jpg"
+import khamtravel4 from "@/public/assets/kham_and_tourist/khamtravel4.jpg"
+import khamtravel5 from "@/public/assets/kham_and_tourist/khamtravel5.jpg"
+import khamtravel6 from "@/public/assets/kham_and_tourist/khamtravel6.jpg"
+import khamtravel7 from "@/public/assets/kham_and_tourist/khamtravel7.jpg"
+import khamtravel8 from "@/public/assets/kham_and_tourist/khamtravel8.jpg"
+import khamtravel9 from "@/public/assets/kham_and_tourist/khamtravel9.jpg"
+import khamtravel10 from "@/public/assets/kham_and_tourist/khamtravel10.jpg"
+import khamtravel11 from "@/public/assets/kham_and_tourist/khamtravel11.jpg"
+import khamtravel12 from "@/public/assets/kham_and_tourist/khamtravel12.jpg"
+import khamtravel13 from "@/public/assets/kham_and_tourist/khamtravel13.jpg"
+import khamtravel14 from "@/public/assets/kham_and_tourist/khamtravel14.jpg"
 
 export interface ImageData {
     src: any;
@@ -63,6 +102,10 @@ export interface DestinationData {
         description: string;
         mapSrc: string;
     };
+}
+
+export interface ClientImages {
+  img: ImageData[];
 }
 
 export const tabs: string[] = ['LUANG PRABANG', 'NONG KHIAW', 'VANG VIENG', 'VIENTIANE'];
@@ -134,7 +177,7 @@ export const destinationImagesMap = {
 
 export const destinationInfo = {
     title: "LUANG PRABANG",
-    description: "Luang Prabang, the ancient capital of Luang Prabang Province in northern Laos, lies in a valley at the confluence of the Mekong and Nam Khan rivers. Inhabited for thousands of years, it was the royal capital of the country until 1975. It's known for its many Buddhist temples, including the gilded Wat Xieng Thong, dating to the 16th century, and Wat Mai, once the residence of the head of Laotian Buddhism."
+    description: "Luang Prabang, the UNESCO World Heritage city nestled on the Mekong River, is Laos's spiritual and cultural heart. For your next Luang Prabang vacation, discover iconic things to do, from exploring centuries-old Buddhist temples like Wat Xieng Thong to a serene river cruise. We specialize in private tours of Luang Prabang, offering curated trips that unveil the city’s timeless charm. Let a trusted local guide you."
 };
 
 export const destinationImages = luangPrabangImages;
@@ -233,11 +276,11 @@ export const luangPrabangExperiences: ExperienceData[] = [
             "Master authentic Laotian culinary techniques"
         ],
         images: {
-            main: { src: lpb5, alt: "Bamboo Weaving" },
+            main: { src: lpb_bamboo_1, alt: "Bamboo Weaving Workshop" },
             secondary: [
-                { src: lpb6, alt: "Cooking Class" },
-                { src: lpbLocal, alt: "Local Market Visit" },
-                { src: lpb1, alt: "Traditional Crafts" }
+                { src: lpb_bamboo_4, alt: "Cooking Class" },
+                { src: lpb_bamboo_5, alt: "Traditional Cooking" },
+                { src: lpb_bamboo_6, alt: "Group Cooking Session" }
             ]
         }
     },
@@ -253,11 +296,11 @@ export const luangPrabangExperiences: ExperienceData[] = [
             "Connection with rich cultural heritage along Mekong River"
         ],
         images: {
-            main: { src: lpb2, alt: "TAEC Museum" },
+            main: { src: lpb_art_1, alt: "Traditional Lao Weaving" },
             secondary: [
-                { src: lpb3, alt: "Ock Pop Tok Textile Gallery" },
-                { src: lpb4, alt: "Traditional Lao Weaving" },
-                { src: lpbTemple, alt: "Cultural Heritage" }
+                { src: lpb_art_4, alt: "Textile Workshop" },
+                { src: lpb_art_5, alt: "TAEC Museum Display" },
+                { src: lpb_art_6, alt: "Cultural Heritage Gallery" }
             ]
         }
     }
@@ -519,5 +562,24 @@ export const destinations: DestinationData[] = [
     }
 ];
 
+
+export const clientImages: ClientImages = {
+  img: [
+    { src: khamtravel, alt: "Group photo with tourists at historic site" },
+    { src: khamtravel2, alt: "Traditional boat experience with travelers" },
+    { src: khamtravel3, alt: "Cultural festival celebration with guests" },
+    { src: khamtravel4, alt: "Cooking class with local chef and tourists" },
+    { src: khamtravel5, alt: "Group exploration at scenic location" },
+    { src: khamtravel6, alt: "Temple visit with guided tour group" },
+    { src: khamtravel7, alt: "Nature trekking adventure with tourists" },
+    { src: khamtravel8, alt: "Traditional ceremony experience" },
+    { src: khamtravel9, alt: "Village visit and cultural exchange" },
+    { src: khamtravel10, alt: "Scenic landscape tour with travelers" },
+    { src: khamtravel11, alt: "Local market exploration with guide" },
+    { src: khamtravel12, alt: "Adventure activity with tourist group" },
+    { src: khamtravel13, alt: "Desert landscape exploration" },
+    { src: khamtravel14, alt: "Community gathering with visitors" }
+  ]
+};
 // Legacy export for backward compatibility
 export const experiences = luangPrabangExperiences;

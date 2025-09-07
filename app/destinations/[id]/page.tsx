@@ -4,7 +4,13 @@ import Image, { StaticImageData } from "next/image";
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination, Keyboard, Thumbs, Autoplay } from "swiper/modules";
+import {
+  Navigation,
+  Pagination,
+  Keyboard,
+  Thumbs,
+  Autoplay,
+} from "swiper/modules";
 import { useParams } from "next/navigation";
 import { motion } from "framer-motion";
 import "swiper/css";
@@ -19,15 +25,10 @@ import {
   destinations,
   ImageData,
   ExperienceData,
+  clientImages,
 } from "@/src/lib/lpbConfig";
 import { animations, stagger } from "@/src/lib/animations";
-import { 
-  ContrastIcon, 
-  X, 
-  Maximize2, 
-  FileText,
-  MapPin
-} from "lucide-react";
+import { ContrastIcon, X, Maximize2, FileText, MapPin } from "lucide-react";
 import ContactUs from "@/component/ContactUs";
 
 interface ModalState {
@@ -51,7 +52,7 @@ const DESTINATION_MAP: { [key: string]: string } = {
   "luang-prabang": "LUANG PRABANG",
   "nong-khiaw": "NONG KHIAW",
   "vang-vieng": "VANG VIENG",
-  "vientiane": "VIENTIANE",
+  vientiane: "VIENTIANE",
 };
 
 export default function DestinationPage() {
@@ -71,10 +72,7 @@ export default function DestinationPage() {
   if (!destinationName) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-amber-50 to-stone-100">
-        <motion.div 
-          className="text-center"
-          {...animations.scaleUp}
-        >
+        <motion.div className="text-center" {...animations.scaleUp}>
           <h1 className="font1 text-4xl font-bold text-amber-800 mb-4">
             Destination Not Found
           </h1>
@@ -117,25 +115,25 @@ export default function DestinationPage() {
         return {
           title: "LUANG PRABANG",
           description:
-            "Luang Prabang, the ancient capital of Luang Prabang Province in northern Laos, lies in a valley at the confluence of the Mekong and Nam Khan rivers. Inhabited for thousands of years, it was the royal capital of the country until 1975. It's known for its many Buddhist temples, including the gilded Wat Xieng Thong, dating to the 16th century, and Wat Mai, once the residence of the head of Laotian Buddhism.",
+            "Luang Prabang, the UNESCO World Heritage city nestled on the Mekong River, is Laos's spiritual and cultural heart. For your next Luang Prabang vacation, discover iconic things to do, from exploring centuries-old Buddhist temples like Wat Xieng Thong to a serene river cruise. We specialize in private tours of Luang Prabang, offering curated trips that unveil the city's timeless charm. Let a trusted local guide you.",
         };
       case "NONG KHIAW":
         return {
           title: "NONG KHIAW",
           description:
-            "Nong Khiaw is a stunning riverside town in northern Laos, nestled along the Nam Ou River and surrounded by dramatic limestone karsts and lush mountains. This peaceful destination offers breathtaking viewpoints, authentic village experiences, and some of the most spectacular natural scenery in Southeast Asia.",
+            "Nong Khiaw, a tranquil escape nestled along the gentle Nam Ou River, is a breathtaking wilderness of dramatic limestone cliffs and authentic village life. For your next Nong Khiaw vacation, discover the simple beauty of northern Laos and find peace away from the world. We specialize in private tours of Nong Khiaw, offering curated journeys that unveil the region's serene and untouched charm. Let a trusted local guide you.",
         };
       case "VANG VIENG":
         return {
           title: "VANG VIENG",
           description:
-            "Vang Vieng is a picturesque town situated along the Nam Song River, famous for its dramatic limestone karst landscape, outdoor adventures, and stunning natural beauty. From hot air balloon rides to cave exploration and river activities, it's an adventure lover's paradise set against a backdrop of emerald rice paddies and towering cliffs.",
+            "Vang Vieng's dramatic landscape is the ultimate backdrop for adventure, inviting you to embrace thrilling experiences that create lasting memories. From exploring the region’s iconic karst mountains to a serene river journey, there are countless things to do in Vang Vieng. We specialize in private tours of Vang Vieng, offering expertly guided trips that blend adrenaline with the region's natural beauty. Let a trusted local guide you.",
         };
       case "VIENTIANE":
         return {
           title: "VIENTIANE",
           description:
-            "Vientiane, the charming capital of Laos, is a laid-back city where French colonial architecture meets traditional Lao culture. Home to magnificent temples, historical monuments, and vibrant markets, it offers a perfect blend of spiritual heritage, cultural richness, and relaxed urban atmosphere along the Mekong River.",
+            "Vientiane offers a laid-back charm that feels more like a welcoming town than a capital city. Here, you'll discover a unique blend of old-world charm and the inviting spirit of the Lao people. For your next Vientiane vacation, explore historic temples, wander through local markets, and uncover a rich heritage. We specialize in private tours of Vientiane, offering a peaceful journey into the heart of this charming city. Let a trusted local guide you.",
         };
       default:
         return {
@@ -230,7 +228,7 @@ export default function DestinationPage() {
           </h1>
 
           {/* Navigation to other destinations - ANIMATED */}
-          <motion.div 
+          <motion.div
             className="flex justify-center flex-wrap gap-4 md:gap-8 mb-5"
             {...animations.fadeIn}
           >
@@ -251,7 +249,11 @@ export default function DestinationPage() {
                   }`}
                   initial={{ opacity: 0, y: 8 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: index * 0.1 }}
+                  transition={{
+                    duration: 0.8,
+                    ease: [0.16, 1, 0.3, 1],
+                    delay: index * 0.1,
+                  }}
                 >
                   {tab}
                 </motion.a>
@@ -264,10 +266,7 @@ export default function DestinationPage() {
           {/* Main Content */}
           <div className="grid grid-cols-1 gap-5 items-center">
             {/* Main Image - ANIMATED */}
-            <motion.div 
-              className="relative"
-              {...animations.scaleUp}
-            >
+            <motion.div className="relative" {...animations.scaleUp}>
               <ImageButton
                 src={currentDestinationImages[selectedImage]}
                 alt={`${currentDestinationInfo.title} Main View`}
@@ -295,10 +294,7 @@ export default function DestinationPage() {
             </motion.div>
 
             {/* Thumbnail Images - ANIMATED */}
-            <motion.div 
-              className=" relative"
-              {...animations.fadeUp}
-            >
+            <motion.div className=" relative" {...animations.fadeUp}>
               <Swiper
                 modules={[Navigation]}
                 spaceBetween={16}
@@ -353,10 +349,7 @@ export default function DestinationPage() {
             </motion.div>
 
             {/* Description and Buttons - ANIMATED */}
-            <motion.div 
-              className="space-y-6 mb-16 mt-5"
-              {...animations.fadeUp}
-            >
+            <motion.div className="space-y-6 mb-16 mt-5" {...animations.fadeUp}>
               {/* Title - NO ANIMATION (as requested) */}
               <h2 className="font1 text-3xl font-light text-amber-900 leading-tight">
                 {currentDestinationInfo.title}
@@ -365,31 +358,29 @@ export default function DestinationPage() {
                 {currentDestinationInfo.description}
               </p>
               <div className="space-y-4">
-                <motion.div 
+                <motion.div
                   className="flex flex-col md:flex-row gap-3 "
                   initial="initial"
                   whileInView="animate"
                   variants={stagger.container}
                   viewport={{ once: true }}
                 >
-                  <Link href={`/#service`}
+                  <Link
+                    href={`/#service`}
                     className="cursor-pointer text-center font2 px-8 py-3 border-2 border-[#52392F] text-amber-800  hover:bg-[#4A322A] hover:text-white transition-colors duration-300 tracking-wider text-sm"
-                  
                   >
-                  <motion.button 
-                    variants={stagger.item}
-                  >
-                    BOOK NOW
-                  </motion.button>
+                    <motion.button variants={stagger.item}>
+                      BOOK NOW
+                    </motion.button>
                   </Link>
-                  <motion.button 
+                  <motion.button
                     className="cursor-pointer font2 px-8 py-3  bg-[#52392F] text-white hover:text-white   transition-colors duration-300 tracking-wider text-sm"
-                     onClick={() => {
-                            const contactSection = document.getElementById('contact');
-                            if (contactSection) {
-                                contactSection.scrollIntoView({ behavior: 'smooth' });
-                            }
-                        }}
+                    onClick={() => {
+                      const contactSection = document.getElementById("contact");
+                      if (contactSection) {
+                        contactSection.scrollIntoView({ behavior: "smooth" });
+                      }
+                    }}
                     variants={stagger.item}
                   >
                     ASK OUR EXPERT
@@ -416,8 +407,8 @@ export default function DestinationPage() {
             ];
 
             return (
-              <motion.div 
-                key={experience.id} 
+              <motion.div
+                key={experience.id}
                 className="mb-16"
                 {...animations.fadeUp}
               >
@@ -427,7 +418,7 @@ export default function DestinationPage() {
                       !isEven ? "order-1 lg:order-2" : ""
                     }`}
                   >
-                    <motion.div 
+                    <motion.div
                       className="flex items-center space-x-3 mb-4"
                       {...animations.fadeIn}
                     >
@@ -438,20 +429,20 @@ export default function DestinationPage() {
                         {currentDestinationInfo.title}
                       </span>
                     </motion.div>
-                    
+
                     {/* Experience Title - NO ANIMATION (as requested) */}
                     <h3 className="font1 font-bold text-3xl text-amber-800">
                       {experience.title}
                     </h3>
-                    
-                    <motion.p 
+
+                    <motion.p
                       className="font2 text-gray-700 leading-relaxed"
                       {...animations.fadeIn}
                     >
                       {experience.description}
                     </motion.p>
-                    
-                    <motion.div 
+
+                    <motion.div
                       className="space-y-3"
                       initial="initial"
                       whileInView="animate"
@@ -459,8 +450,8 @@ export default function DestinationPage() {
                       viewport={{ once: true }}
                     >
                       {experience.features.map((feature, i) => (
-                        <motion.div 
-                          key={i} 
+                        <motion.div
+                          key={i}
                           className="flex items-start space-x-3"
                           {...animations.fadeIn}
                         >
@@ -502,10 +493,7 @@ export default function DestinationPage() {
                     </motion.div>
 
                     {/* Experience Thumbnail Swiper - ANIMATED */}
-                    <motion.div 
-                      className="relative"
-                      {...animations.fadeUp}
-                    >
+                    <motion.div className="relative" {...animations.fadeUp}>
                       <Swiper
                         modules={[Navigation]}
                         spaceBetween={12}
@@ -548,10 +536,7 @@ export default function DestinationPage() {
 
           {/* No experiences message - ANIMATED */}
           {currentExperiences.length === 0 && (
-            <motion.div 
-              className="text-center py-16"
-              {...animations.scaleUp}
-            >
+            <motion.div className="text-center py-16" {...animations.scaleUp}>
               <div className="bg-amber-50  p-8 border border-amber-200">
                 <FileText className="w-16 h-16 text-amber-600 mx-auto mb-4" />
                 <h3 className="font1 text-xl font-semibold text-amber-800 mb-2">
@@ -585,7 +570,7 @@ export default function DestinationPage() {
                     </p>
                   </div>
                 )}
-                
+
                 {/* Close Button - Always clickable */}
                 <button
                   onClick={closeModal}
@@ -684,12 +669,60 @@ export default function DestinationPage() {
         </div>
       )}
 
+      {/* Our client Image gallary swiper */}
+      <div className="py-16 px-4 bg-white">
+        <div className="max-w-6xl mx-auto">
+          {/* Section Header */}
+          <div className="text-center mb-12">
+            <h2 className="font1 text-3xl md:text-4xl font-light text-amber-800 mb-4 tracking-widest">
+              Highlights Captured
+            </h2>
+            <div className="w-24 h-1 bg-amber-600 mx-auto"></div>
+          </div>
+
+          {/* Client Images Swiper */}
+          <motion.div {...animations.fadeUp}>
+            <Swiper
+              modules={[Navigation, Autoplay]}
+              spaceBetween={5}
+              slidesPerView={1}
+              navigation={true}
+
+              autoplay={{ delay: 4000, disableOnInteraction: false }}
+              breakpoints={{
+                640: { slidesPerView: 2 },
+                768: { slidesPerView: 3 },
+                1024: { slidesPerView: 4 },
+              }}
+              className="destination-swiper destination-pagination"
+            >
+              {clientImages.img.map((image, index) => (
+                <SwiperSlide key={index}>
+                  <div className="group relative overflow-hidden  h-64 cursor-pointer">
+                    <Image
+                      src={image.src}
+                      alt={image.alt}
+                      className="w-full h-full object-cover transition-transform duration-300 "
+                    />
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300">
+                      <div className="absolute bottom-4 left-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <p className="font2 text-sm">{image.alt}</p>
+                      </div>
+                    </div>
+                  </div>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </motion.div>
+        </div>
+      </div>
+
       {/* Location Section - NO ANIMATION (title as requested) */}
       <div className="text-center py-16 px-4">
         <h1 className="font1 text-4xl md:text-5xl font-light text-gray-800 mb-6 tracking-widest">
           {currentDestination.location.title}
         </h1>
-        <motion.p 
+        <motion.p
           className="font2 text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed"
           {...animations.fadeUp}
         >
@@ -698,7 +731,7 @@ export default function DestinationPage() {
       </div>
 
       {/* Map iframe - ANIMATED */}
-      <motion.div 
+      <motion.div
         className="w-full h-96 md:h-[500px] lg:h-[600px]"
         {...animations.scaleUp}
       >

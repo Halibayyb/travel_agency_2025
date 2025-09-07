@@ -3,6 +3,10 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useRouter } from 'next/navigation';
 import { ChevronDown, Menu, X } from 'lucide-react';
+import Image from "next/image";
+
+// import image
+import logo from "@/public/assets/logo.png";
 
 // Types for navigation items
 interface SubItem {
@@ -279,20 +283,26 @@ const Navbar = () => {
             } ${isScrolled ? ' py-4 px-0 xl:px-20' : ''}`}>
                 <div className="flex items-center justify-between px-10 xl:px-5">
                     {/* Logo/Brand */}
-                    <div>
-                        <button
-                            onClick={() => handleNavigation(NAV_ITEMS[0])}
-                            className={`text-xl font-bold tracking-wider transition-colors duration-300 cursor-pointer ${
-                                isMenuOpen || isScrolled 
-                                    ? 'text-gray-800' 
-                                    : isLandingPage 
-                                        ? 'text-white' 
-                                        : 'text-gray-800'
-                            }`}
-                        >
-                            LOGO
-                        </button>
-                    </div>
+                    <div className="flex justify-center items-center">
+    <button
+        onClick={() => handleNavigation(NAV_ITEMS[0])}
+        className="transition-transform duration-300 cursor-pointer hover:scale-105"
+    >
+        <Image 
+            src={logo}
+            alt="Company Logo" 
+            width={250}
+            height={250}
+            className={`h-4 w-auto md:h-5 transition-all duration-300 ${
+                isMenuOpen || isScrolled 
+                    ? 'brightness-0' // Makes logo black on light backgrounds
+                    : isLandingPage 
+                        ? 'brightness-0 invert' // Makes logo white on dark backgrounds
+                        : 'brightness-0' // Makes logo black on light backgrounds
+            }`}
+        />
+    </button>
+</div>
                     
                     {/* Navigation Links - Desktop */}
                     <nav className="hidden md:flex space-x-8 s">
