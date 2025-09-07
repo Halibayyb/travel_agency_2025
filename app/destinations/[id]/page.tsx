@@ -554,7 +554,7 @@ export default function DestinationPage() {
 
       {/* Modal - Keep as is (no animation needed) */}
       {modal.open && modal.images.length > 0 && (
-        <div className="fixed inset-0 bg-black/95 z-50 flex items-center justify-center">
+        <div className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center">
           <div className="relative w-full h-full flex flex-col">
             {/* Fixed Header with Title and Close Button */}
             <div className="absolute top-0 left-0 right-0 z-30 p-4 md:p-6">
@@ -583,7 +583,7 @@ export default function DestinationPage() {
             </div>
 
             <div className="flex-1 flex items-center justify-center p-8 pt-20 md:pt-24">
-              <div className="w-full max-w-6xl h-full">
+              <div className="w-full max-w-4xl h-full">
                 <Swiper
                   modules={[Navigation, Pagination, Keyboard, Thumbs]}
                   spaceBetween={30}
