@@ -8,6 +8,7 @@ import LocalReview from "@/component/LocalReview";
 import LocationPage from "@/component/LocationPage";
 
 import TourPackages from "@/component/TourPackages";
+import VisitorTracker from "@/component/VisitorTrackers";
 import Image from "next/image";
 
 export default function Home() {
@@ -16,6 +17,7 @@ export default function Home() {
       {/* Navbar will be positioned absolutely over the hero */}
       
       {/* Hero section with background parallax */}
+      <VisitorTracker />
       <HeroSection />
       <AboutPage />
 

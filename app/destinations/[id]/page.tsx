@@ -30,6 +30,7 @@ import {
 import { animations, stagger } from "@/src/lib/animations";
 import { ContrastIcon, X, Maximize2, FileText, MapPin } from "lucide-react";
 import ContactUs from "@/component/ContactUs";
+import VisitorTracker from "@/component/VisitorTrackers";
 
 interface ModalState {
   open: boolean;
@@ -220,6 +221,10 @@ export default function DestinationPage() {
 
   return (
     <section className="min-h-screen bg-gradient-to-b from-amber-50 to-stone-100 pt-20">
+      <VisitorTracker 
+        destination={destinationName}
+        pageName={`Destination: ${destinationName}`}
+      />
       <div className="p-8">
         {/* Header - NO ANIMATION (as requested) */}
         <div className="text-center mb-12">
