@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { Phone, Mail, MapPin, ChevronDown } from "lucide-react";
 import { countries } from "countries-list";
+import { submitContactInquiry } from '@/src/lib/firebase/formService';
 
 const ContactUs = () => {
     const [formData, setFormData] = useState({
@@ -12,6 +13,8 @@ const ContactUs = () => {
     });
 
     const [isCountryOpen, setIsCountryOpen] = useState(false);
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [submitMessage, setSubmitMessage] = useState<{ type: 'success' | 'error', text: string } | null>(null);
 
     // Convert countries object to array for dropdown
     const countryOptions = [
@@ -38,10 +41,43 @@ const ContactUs = () => {
         setIsCountryOpen(false);
     };
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        // Handle form submission here
-        console.log('Form submitted:', formData);
+        
+        setIsSubmitting(true);
+        setSubmitMessage(null);
+
+        // Submit using the service
+        const result = await submitContactInquiry(formData);
+
+        if (result.success) {
+            // Show success message
+            setSubmitMessage({
+                type: 'success',
+                text: result.message
+            });
+
+            // Reset form
+            setFormData({
+                name: '',
+                country: '',
+                email: '',
+                message: ''
+            });
+
+            // Clear success message after 5 seconds
+            setTimeout(() => {
+                setSubmitMessage(null);
+            }, 5000);
+        } else {
+            // Show error message
+            setSubmitMessage({
+                type: 'error',
+                text: result.message
+            });
+        }
+
+        setIsSubmitting(false);
     };
 
     return(
@@ -53,7 +89,6 @@ const ContactUs = () => {
                 </h1>
                 <p 
                     className="font2 text-sm xl:text-base text-gray-600 max-w-2xl mx-auto leading-relaxed mt-5"
-                
                 >We would be delighted to hear from you and begin the journey of planning your perfect trip to Laos. Whether you have a specific itinerary in mind or are simply seeking inspiration, we are here to provide personal guidance and answer any questions you may have.</p>
             </div>
 
@@ -132,6 +167,7 @@ const ContactUs = () => {
                                     onChange={handleInputChange}
                                     className="w-full border-0 border-b-2 border-gray-300 bg-transparent py-3 px-0 text-gray-800 placeholder-gray-500 focus:outline-none focus:border-amber-600 transition-colors duration-300 font2"
                                     placeholder=""
+                                    required
                                 />
                             </div>
 
@@ -177,6 +213,7 @@ const ContactUs = () => {
                                     onChange={handleInputChange}
                                     className="w-full border-0 border-b-2 border-gray-300 bg-transparent py-3 px-0 text-gray-800 placeholder-gray-500 focus:outline-none focus:border-amber-600 transition-colors duration-300 font2"
                                     placeholder=""
+                                    required
                                 />
                             </div>
 
@@ -192,16 +229,29 @@ const ContactUs = () => {
                                     rows={6}
                                     className="w-full border-0 border-b-2 border-gray-300 bg-transparent py-3 px-0 text-gray-800 placeholder-gray-500 focus:outline-none focus:border-amber-600 transition-colors duration-300 resize-none font2"
                                     placeholder=""
+                                    required
                                 />
                             </div>
+
+                            {/* Success/Error Message */}
+                            {submitMessage && (
+                                <div className={`p-4 rounded-lg ${
+                                    submitMessage.type === 'success' 
+                                        ? 'bg-green-50 border border-green-200 text-green-800' 
+                                        : 'bg-red-50 border border-red-200 text-red-800'
+                                }`}>
+                                    <p className="text-sm font2">{submitMessage.text}</p>
+                                </div>
+                            )}
 
                             {/* Submit Button */}
                             <div className="flex justify-end pt-8">
                                 <button
                                     type="submit"
-                                    className="bg-[#52392F] hover:bg-[#4A322A] text-white px-12 py-4 tracking-widest text-sm font-light transition-colors duration-300 font2"
+                                    disabled={isSubmitting}
+                                    className="bg-[#52392F] hover:bg-[#4A322A] text-white px-12 py-4 tracking-widest text-sm font-light transition-colors duration-300 font2 disabled:opacity-50 disabled:cursor-not-allowed"
                                 >
-                                    Submit
+                                    {isSubmitting ? 'SENDING...' : 'SUBMIT'}
                                 </button>
                             </div>
                         </form>
