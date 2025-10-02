@@ -189,6 +189,7 @@ export const submitContactInquiry = async (formData: ContactFormData): Promise<S
         const emailResult = await sendContactNotificationEmail({
             name: formData.name,
             email: formData.email,
+            country: formData.country,
             message: formData.message
         });
 

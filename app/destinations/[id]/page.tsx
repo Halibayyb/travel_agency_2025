@@ -31,6 +31,8 @@ import { animations, stagger } from "@/src/lib/animations";
 import { ContrastIcon, X, Maximize2, FileText, MapPin } from "lucide-react";
 import ContactUs from "@/component/ContactUs";
 import VisitorTracker from "@/component/VisitorTrackers";
+import Navbar from "@/component/Navbar";
+import Footer from "@/component/Footer";
 
 interface ModalState {
   open: boolean;
@@ -220,6 +222,8 @@ export default function DestinationPage() {
   );
 
   return (
+    <>
+    <Navbar />
     <section className="min-h-screen bg-gradient-to-b from-amber-50 to-stone-100 pt-20">
       <VisitorTracker 
         destination={destinationName}
@@ -755,5 +759,7 @@ export default function DestinationPage() {
         <ContactUs />
       </motion.div>
     </section>
+    <Footer />
+    </>
   );
 }

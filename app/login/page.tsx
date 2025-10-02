@@ -4,6 +4,7 @@ import { useState, FormEvent } from 'react';
 import { useRouter } from 'next/navigation';
 import { authService } from '@/src/lib/firebase/authService';
 import { Mail, Lock, Eye, EyeOff, Map } from 'lucide-react';
+import Navbar from '@/component/Navbar';
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
@@ -30,6 +31,8 @@ const LoginPage = () => {
   };
 
   return (
+    <>
+    <Navbar />
     <div className="min-h-screen bg-gradient-to-br from-white to-white flex items-center justify-center p-4 font2">
       <div className="bg-white rounded-xl shadow-lg w-full max-w-md p-8 border border-gray-200">
         {/* Logo/Brand */}
@@ -105,6 +108,8 @@ const LoginPage = () => {
 
       </div>
     </div>
+    
+    </>
   );
 };
 

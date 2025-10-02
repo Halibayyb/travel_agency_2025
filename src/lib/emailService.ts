@@ -62,6 +62,7 @@ export const sendBookingNotificationEmail = async (formData: {
 export const sendContactNotificationEmail = async (formData: {
     name: string;
     email: string;
+    country: string;  // Add country to the type
     message: string;
 }): Promise<{ success: boolean; message: string; error?: any }> => {
     try {
@@ -73,6 +74,7 @@ export const sendContactNotificationEmail = async (formData: {
             {
                 from_name: formData.name,
                 from_email: formData.email,
+                from_country: formData.country,  // ✅ Add this line
                 message: formData.message,
                 to_email: 'labdelines.team@gmail.com'
             },

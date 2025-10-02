@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import { Aboreto, Afacad } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/component/Navbar";
-import Footer from "@/component/Footer";
 
 const aboretoFont = Aboreto({
   weight: '400',
@@ -31,11 +29,11 @@ export default function RootLayout({
       <body
         className={`${aboretoFont.variable} ${afacadFont.variable} antialiased`}
       >
-        <Navbar />
+
         <main>
           {children}
         </main>
-        <Footer />
+
       </body>
     </html>
   );
